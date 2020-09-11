@@ -109,7 +109,7 @@ body.legal.landscape  .sheet { width: 357mm; height: 215mm }
 
 #header {
     position: absolute;
-    top: 5px;
+    top: 2px;
     width: 720px;
     max-width: 720px;
 }
@@ -119,9 +119,7 @@ body.legal.landscape  .sheet { width: 357mm; height: 215mm }
 }
 #footer {
     position: absolute;
-    bottom: 5px;
-    border: solid #000;
-    border-width: 1px 0 0 0;
+    bottom: 2px;
     width: 720px;
     max-width: 720px;
 }
