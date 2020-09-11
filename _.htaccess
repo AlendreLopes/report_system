@@ -1,0 +1,7 @@
+ReWriteEngine on
+ReWriteCond %{REQUEST_URL}
+ReWriteRule ^agreements(.*)$ agreements/web/$1 [L,QSA]
+ReWriteRule ^backend(.*)$ backend/web/$1 [L,PT]
+ReWriteRule ^(.*)$ frontend/web/$1 [L,QSA]
+ReWriteRule ^owners(.*)$ owners/web/$1 [L,QSA]
+ReWriteRule ^secretary(.*)$ secretary/web/$1 [L,QSA]

@@ -1,0 +1,9 @@
+/vagrant
+/vendor
+codeception.yml
+docker-compose.yml
+init
+init.bat
+LICENSE.md
+#README.md
+Vagrantfile
