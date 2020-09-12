@@ -18,13 +18,8 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'username')->label('') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Limpar', ['class' => 'btn btn-outline-secondary']) ?>
-    </div>
-
+    <?= $form->field($model, 'username')->textInput(['placeholder' => 'Pesquisar Protocolo'])->label('') ?>
+    
     <?php ActiveForm::end(); ?>
 
 </div>

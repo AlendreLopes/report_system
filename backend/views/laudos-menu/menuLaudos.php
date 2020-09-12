@@ -13,7 +13,7 @@
     ->all();
     MenuReportAsset::register($this);
     ?>
-    <div id="cssmenu">
+    <div id="cssmenu" class="row">
         <ul class="navbar-nav">
         <li><a>Listar Laudos:</a> </li>
         <?php
@@ -67,5 +67,4 @@
         }
         ?>
         </ul>
-        </div>
-    <hr>
+    </div>
