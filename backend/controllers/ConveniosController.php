@@ -8,6 +8,7 @@ use backend\models\ConveniosOld;
 use backend\models\ConveniosSearch;
 use backend\controllers\AppController;
 use yii\web\NotFoundHttpException;
+
 /**
  * ConveniosController implements the CRUD actions for Convenios model.
  */
@@ -49,11 +50,16 @@ class ConveniosController extends AppController
     public function actionCreate()
     {
         $model = new Convenios();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->scenario = 'create';
+        if ($model->load(Yii::$app->request->post())){
+            $model->password_hash = Yii::$app->security->generatePasswordHash($model->senha); 
+            $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+            $model->status = 10;
+            $model->auth_key = Yii::$app->security->generateRandomString();
+            if($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
-
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -69,9 +75,11 @@ class ConveniosController extends AppController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model->scenario = 'update';
+        if ($model->load(Yii::$app->request->post())){
+            if($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [
@@ -88,9 +96,18 @@ class ConveniosController extends AppController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        if(Yii::$app->user->can('admin'))
+        {
+            if ($this->findModel($id)->delete())
+            {
+                Yii::$app->session->setFlash('success', 'Convenio excluido com sucesso.');
+                return $this->redirect(['index']);
+            }
+        }else
+        {
+            Yii::$app->session->setFlash('error', 'Você não tem permissão para acessar esta ação.');
+            return $this->redirect(['index']);
+        }  
     }
 
     /**
