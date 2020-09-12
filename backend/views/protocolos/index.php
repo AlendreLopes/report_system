@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = '[ Sistema de Laudos ]';
+$this->title = 'Sistema de Laudos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="protocolos-index">
