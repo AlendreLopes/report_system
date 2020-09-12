@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'username')->label('Pesquisar Protocolo') ?>
+    <?= $form->field($model, 'username')->label('') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Pesquisar', ['class' => 'btn btn-primary']) ?>

@@ -7,12 +7,12 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Protocolos';
+$this->title = '[ Sistema de Laudos ]';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="protocolos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
 
@@ -60,7 +60,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
     <?php Pjax::end(); ?>
 
 </div>
