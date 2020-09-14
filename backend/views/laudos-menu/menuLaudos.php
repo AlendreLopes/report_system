@@ -15,7 +15,6 @@
     ?>
     <div id="cssmenu" class="row">
         <ul class="navbar-nav">
-        <li><a>Listar Laudos:</a> </li>
         <?php
         if($menu){
             foreach ($menu as $menus):
@@ -66,5 +65,24 @@
         <?php
         }
         ?>
+            <li>
+                <a>ADM</a>
+                <ul>
+                    <li>
+                        <a href="#">Exames &raquo </a>
+                        <ul>
+                            <li>
+                                <a href="/laudos-exames-primario/index">Exames Primário</a>
+                            </li>
+                            <li>
+                                <a href="/laudos-exames-secundario/index">Exames Secundário</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/user/index'">Usuários</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
