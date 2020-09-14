@@ -147,7 +147,6 @@ class ProtocolosController extends AppController
      */
     public function actionCreateReport($id)
     {
-        $this->layout = "mainRegister";
         $model = $this->findModel($id);
         $cookies = Yii::$app->response->cookies;
         $cookies->add(new \yii\web\Cookie([
