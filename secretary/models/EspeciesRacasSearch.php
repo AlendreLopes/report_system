@@ -17,8 +17,8 @@ class EspeciesRacasSearch extends EspeciesRacas
     public function rules()
     {
         return [
-            [['id', 'especie_id'], 'integer'],
-            [['titulo'], 'safe'],
+            [['id'], 'integer'],
+            [['especie_id', 'titulo'], 'safe'],
         ];
     }
 
@@ -43,7 +43,7 @@ class EspeciesRacasSearch extends EspeciesRacas
         $query = EspeciesRacas::find();
 
         // add conditions that should always apply here
-
+        $query->join('LEFT JOIN', 'especies', 'especies.id = especies_racas.especie_id');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -59,10 +59,10 @@ class EspeciesRacasSearch extends EspeciesRacas
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'especie_id' => $this->especie_id,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
+        $query->andFilterWhere(['like', 'titulo', $this->titulo])
+        ->andFilterWhere(['like', 'especies.titulo', $this->especie_id]);
 
         return $dataProvider;
     }
