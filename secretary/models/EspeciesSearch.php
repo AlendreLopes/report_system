@@ -17,7 +17,7 @@ class EspeciesSearch extends Especies
     public function rules()
     {
         return [
-            [['id', 'created_by'], 'integer'],
+            [['id'], 'integer'],
             [['titulo'], 'safe'],
         ];
     }
@@ -59,7 +59,6 @@ class EspeciesSearch extends Especies
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_by' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo]);

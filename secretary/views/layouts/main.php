@@ -35,10 +35,6 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-    ];
     if (Yii::$app->user->can('secretary')) {
         // everyone can see Home page
         $menuItems[] = ['label' => Yii::t('app', 'Convênios'), 'url' => ['/convenios/index']];

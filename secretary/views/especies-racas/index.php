@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Raças';
-$this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['/secretaria/protocolos/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['/protocolos/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -27,10 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             //'id',
-            //'user_id',
             //'especie_id',
             [
                 'attribute' => 'especie_id',
@@ -41,7 +38,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'titulo',
-
             ['class' => 'yii\grid\ActionColumn', 'template' => "{view} - {update}"],
         ],
     ]); ?>

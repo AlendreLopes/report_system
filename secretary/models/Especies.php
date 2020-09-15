@@ -3,7 +3,6 @@
 namespace secretary\models;
 
 use Yii;
-use app\models\User;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
 
@@ -43,10 +42,8 @@ class Especies extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_by', 'titulo'], 'required'],
-            [['created_by'], 'integer'],
+            [['titulo'], 'required'],
             [['titulo'], 'string', 'max' => 50],
-            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -57,7 +54,6 @@ class Especies extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'created_by' => 'User ID',
             'titulo' => 'Titulo',
         ];
     }
@@ -70,15 +66,5 @@ class Especies extends \yii\db\ActiveRecord
     public function getEspeciesRacas()
     {
         return $this->hasMany(EspeciesRacas::className(), ['especie_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[User]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 }

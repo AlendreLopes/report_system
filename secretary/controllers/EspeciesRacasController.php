@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\secretaria\controllers;
+namespace secretary\controllers;
 
 use Yii;
-use app\modules\secretaria\models\EspeciesRacas;
-use app\modules\secretaria\models\EspeciesRacasSearch;
+use secretary\models\EspeciesRacas;
+use secretary\models\EspeciesRacasSearch;
 
 use yii\web\NotFoundHttpException;
 use secretary\controllers\AppController;

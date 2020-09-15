@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\secretaria\models\Especies */
 
-$this->title = "Espécie: ".$model->id;
+$this->title = "Espécie: ".$model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Especies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'created_by',
             'titulo',
         ],
     ]) ?>

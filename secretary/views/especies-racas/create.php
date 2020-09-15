@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\secretaria\models\EspeciesRacas */
 
-$this->title = 'Create Especies Racas';
+$this->title = 'Cadastrar Especies Racas';
 $this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Especies Racas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

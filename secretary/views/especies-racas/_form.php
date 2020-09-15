@@ -4,14 +4,14 @@ use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use app\modules\secretaria\models\Especies;
+use secretary\models\Especies;
 
 use kartik\widgets\ActiveForm;
 //use kartik\widgets\DepDrop;
 use kartik\widgets\Select2;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\secretaria\models\EspeciesRacas */
+/* @var $model secretary\models\EspeciesRacas */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 

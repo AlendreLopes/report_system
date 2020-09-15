@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\secretaria\models\Especies */
 
-$this->title = 'Atualizar Especie: ' . $model->id;
+$this->title = 'Atualizar Especie: ' . $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Especies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];

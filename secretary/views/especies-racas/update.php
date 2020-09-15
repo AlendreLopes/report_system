@@ -5,11 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\secretaria\models\EspeciesRacas */
 
-$this->title = 'Update Especies Racas: ' . $model->id;
+$this->title = 'Atualizar Racas: ' . $model->titulo;
 $this->params['breadcrumbs'][] = ['label' => 'Protocolos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => 'Especies Racas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Atualizar';
 ?>
 
 <div class="especies-racas-update">
