@@ -54,12 +54,26 @@ class ProtocolosController extends AppController
      */
     public function actionViewSearch()
     {
-        $searchModel = new ProtocolosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        /*
+        $numero = Yii::$app->request->queryParams;
+        //array(1) { ["ProtocolosSearch"]=> array(1) { ["username"]=> string(5) "61784" } } 
+        $model = Protocolos::find()
+        ->where(['numero' => $numero["ProtocolosSearch"]["username"]])
+        ->orFilterWhere(['or', ['username' => $numero["ProtocolosSearch"]["username"]]])
+        ->all();
+        $model = (new \yii\db\Query())
+        ->from('protocolos')
+        ->where(['numero' => $numero["ProtocolosSearch"]["username"]])
+        ->one();
+        return $this->render('view-search', [
+            'model' => $model,
+        ]);
+         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('view-search', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        */
     }
     /**
      * Displays a single Protocolos model to list reports to print.

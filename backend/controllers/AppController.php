@@ -34,7 +34,7 @@ use Yii;
                         'allow' => true,
                         'actions' => [
                             'index', 'view', 'view-search', 'view-print', 'view-print-reports', 
-                            'pet-imagem-diagnosticos-veterinarios', 'racas', 'about', 'contatc', 'signup', 'logout'],
+                            'racas', 'about', 'contact', 'logout'],
                     ],
                     [
                         'roles' => ['secretary'],

@@ -27,17 +27,29 @@ $readyToPrint = 0;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\laudos\models\ProtocolosSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
+/* @var $dataProvider yii\data\ActiveDataProvider
 $this->title = 'Imprimir Protocolos';
 $this->params['breadcrumbs'][] = ['label' => 'Laudos', 'url' => ['/protocolos/index']];
 $this->params['breadcrumbs'][] = $this->title;
+ */
 ?>
 
 <div class="protocolos-index">
 
     <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
-    <table id="sorter" class="tablesorter" cellpadding="1">
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-8"> TITULO DO LAUDO </div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+		<!-- Optional: clear the XS cols if their content doesn't match in height -->
+		<div class="clearfix visible-xs-block"></div>
+		<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+	</div>
+
+<table id="sorter" class="tablesorter" cellpadding="1">
 
 <thead>
 

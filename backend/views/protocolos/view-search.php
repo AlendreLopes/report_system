@@ -4,73 +4,78 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+//
+use backend\models\Protocolos;
+//
+/*
+$protocolo = Protocolos::find()
+->where(['id' => $model->id])
+->with([
+    'laudosApCitopatologia',
+    'laudosApCitopatologiaVaginal',
+    'laudosApHistopatologia',
+    'laudosDiEndoscopia',
+    'laudosDiRaioX',
+    'laudosDiRaioXContrastado',
+    'laudosDiUsAparelhoFeminino',
+    'laudosDiUsEstrutura',
+    'laudosDiUsExploratoria',
+    'laudosDiUsGestacional',
+    'laudosDiUsObstetrica',
+    'laudosDiUsPosParto',
+])->one();
+*/
+// Variável para exibir se há ou não laudos para impressão
+$readyToPrint = 0;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\laudos\models\ProtocolosSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $dataProvider yii\data\ActiveDataProvider
 
 $this->title = 'Imprimir Protocolos';
 $this->params['breadcrumbs'][] = ['label' => 'Laudos', 'url' => ['/protocolos/index']];
 $this->params['breadcrumbs'][] = $this->title;
+ */
 ?>
 
 <div class="protocolos-index">
 
     <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
+    <hr>
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12 col-md-12 text-center"> PROTOCOLO</div>
+        <div class="col-xs-12 col-sm-12 col-md-12" style="width:95%; border:solid 1px black;">
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">Cadastrar</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Paciente</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Raça</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Senha</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+            </div>
+        </div>
+	</div>
 
-    <?php Pjax::begin(); ?>
-    <?= $this->render('_search', ['model' => $searchModel]); ?>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'options' => [
-            'class' => 'table-responsive table table-striped',
-        ],
-        'columns' => [
-            [
-                'attribute' => 'username',
-                'format'    => 'raw',
-                'label'     => 'Protocolos',
-                'value'     => function ($model) {
-                    return Html::a($model->username, Url::to(Url::to(['protocolos/view-print', 'id' => $model->id])), ['title' => 'Imprimir Laudos']);
-                }
-            ],
-            [
-                'attribute' => 'convenio_id',
-                'format'    => 'raw',
-                'label'     => 'Convenio',
-                'value'     => function ($model) {
-                    return $model->convenios->titulo;
-                }
-            ],
-            [
-                'attribute' => 'requisitante',
-                'format'    => 'raw',
-                'label'     => 'Veterinário',
-                'value'     => 'requisitante'
-            ],
-            'paciente',
-            'especie',
-            'especie_raca',
-            [
-                'attribute' => 'username',
-                'format'    => 'raw',
-                'label'     => 'Imprimir',
-                'value'     => function ($model) {
-                    return Html::a( 
-                         //$model->username
-                         '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
-                            <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
-                            <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-                        </svg>
-                        ',
-                         Url::to(Url::to(['protocolos/view-print', 'id' => $model->id])), 
-                         ['title' => 'Imprimir Laudos', 'style' => ['margin-left' => '40%']]);
-                }
-            ],
-        ],
-    ]); ?>
-    <?php Pjax::end(); ?>
-
-    </div>
+    <hr>
+	<div class="container-fluid">
+		<div class="col-xs-12 col-sm-12 col-md-12 text-center"> TITULO DO LAUDO </div>
+        <div class="col-xs-12 col-sm-12 col-md-12" style="width:95%; border:solid 1px black;">
+        <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">Visualizar</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Clínica</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Paciente</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Sexo</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+                <div class="col-xs-3 col-sm-3 col-md-3">Dados</div>
+            </div>
+        </div>
+	</div>
+</div>
