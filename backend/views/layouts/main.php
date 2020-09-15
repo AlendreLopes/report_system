@@ -41,9 +41,9 @@ AppAsset::register($this);
         // display Users to admin+ roles
         if (Yii::$app->user->can('admin')) {
             $menuItems[] = '<li>
-            <form id="w0" action="/backend/web/index.php/protocolos/view-search" method="get" data-pjax="1" style="padding-top:2px;">
+            <form id="w0" action="/index.php/protocolos/view-search" method="get" data-pjax="1" style="padding-top:2px;">
             <div class="form-group field-protocolossearch-username">
-                <input type="text" id="protocolossearch-username" class="form-control" name="username" placeholder="Pesquisar Protocolo">
+                <input type="text" id="protocolossearch-username" class="form-control" name="ProtocolosSearch[username]" placeholder="Pesquisar Protocolo">
             </div>
             </form>
             </li>';
