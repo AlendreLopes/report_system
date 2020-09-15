@@ -27,32 +27,71 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <div class="row">
-        <div class="col-xs-5 col-sm-5 col-md-5 text-center">&nbsp;</div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="protocolos-search">
-            <form id="w0" action="/backend/web/index.php/protocolos/view-search" method="get" data-pjax="1">
-                <div class="form-group field-protocolossearch-username">
-                    <label class="control-label" for="protocolossearch-username"></label>
-                    <input type="text" id="protocolossearch-username" class="form-control" name="ProtocolosSearch[username]" placeholder="Pesquisar Protocolo">
-                    <div class="help-block"></div>
-                </div>
-            </form>
-            </div>
-        </div>
-        <div class="col-xs-5 col-sm-5 col-md-5 text-right">
+    <!-- <div class="col-xs-12 col-sm-12 col-md-12"> -->
+    <div class="container-fluid">
         <?php
-            echo Html::beginForm(['/site/logout'], 'post');
-            //echo Html::submitButton('Logout (' . Yii::$app->user->identity->username . ')', [ 'class' => 'btn btn-danger']);
-            echo Html::submitButton('<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
-            <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            </svg>', [ 'class' => 'btn btn-warning', 'title' => Yii::$app->user->identity->username . ' sair do sistema?']);
-            echo Html::endForm();
+        NavBar::begin([
+            //'brandLabel' => Yii::$app->name,
+            'brandLabel' => 'Página inicial',
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar-inverse navbar-default',
+            ],
+        ]);
+        // display Users to admin+ roles
+        if (Yii::$app->user->can('admin')) {
+            $menuItems[] = '<li>
+            <form id="w0" action="/backend/web/index.php/protocolos/view-search" method="get" data-pjax="1" style="padding-top:2px;">
+            <div class="form-group field-protocolossearch-username">
+                <input type="text" id="protocolossearch-username" class="form-control" name="ProtocolosSearch[username]" placeholder="Pesquisar Protocolo">
+            </div>
+            </form>
+            </li>';
+            $menuItems [] = [
+                'label' => Yii::t('app', 'Convenios'), 'url' => ['/convenios/index'],
+            ];    
+            $menuItems[] = [
+                'label' => Yii::t('app', 'ADM'),
+                'items' => [
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Exames para Laudos</li>',
+                        ['label' => Yii::t('app', 'Exames'), 'url' => ['/laudos-exames/index']],
+                        ['label' => Yii::t('app', 'Exames Primario'), 'url' => ['/laudos-exames-primario/index']],
+                        ['label' => Yii::t('app', 'Exames Secundario'), 'url' => ['/laudos-exames-secundario/index']],
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Laudos</li>',
+                        ['label' => Yii::t('app', 'Menu'), 'url' => ['#']],
+                        ['label' => Yii::t('app', 'Menu'), 'url' => ['/laudos-menu/index']],
+                        ['label' => Yii::t('app', 'Primario'), 'url' => ['/laudos-menu-primario/index']],
+                        ['label' => Yii::t('app', 'Secundario'), 'url' => ['/laudos-menu-secundario/index']],
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Usuários</li>',
+                        ['label' => Yii::t('app', 'Users'), 'url' => ['/user/index']],
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Update DataBase</li>',
+                        ['label' => Yii::t('app', 'Database'), 'url' => ['/admin/default']],
+                    '<li class="divider"></li>',
+                ],
+            ];
+        }
+        if (Yii::$app->user->isGuest) {
+            $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        } else {
+            $menuItems[] = '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>';
+        }
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => $menuItems,
+        ]);
+        NavBar::end();
         ?>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
         <?php //= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>

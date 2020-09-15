@@ -10,12 +10,6 @@
     //
     use backend\models\Protocolos;
     //
-    $query = (new \yii\db\Query())
-    ->from('protocolos')
-    ->select(['id','motedepass'])
-    ->orderBy(['id' => SORT_DESC,])
-    ->indexBy('id');
-
     $protocolo = Protocolos::find()
     ->where(['id' => $model->id])
     ->with([
