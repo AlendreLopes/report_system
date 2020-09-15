@@ -187,7 +187,9 @@ class ProtocolosController extends AppController
         $model->scenario = 'update';
         if ($model->load(Yii::$app->request->post())){
             $especieTitulo = Especies::findOne($model->especie)->titulo;
+            $especieRacaTitulo = EspeciesRacas::findOne($model->especie_raca)->titulo;
             $model->especie = $especieTitulo;
+            $model->especie_raca = $especieRacaTitulo;
             if($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
