@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
     <hr>
+    <?= $this->render('_search', ['model' => $searchModel]); ?>
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
