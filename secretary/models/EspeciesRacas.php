@@ -3,6 +3,7 @@
 namespace secretary\models;
 
 use Yii;
+use common\models\User;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
 
@@ -25,6 +26,17 @@ class EspeciesRacas extends \yii\db\ActiveRecord
     {
         return 'especies_racas';
     }
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => BlameableBehavior::className(), 
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'created_by'
+                ],
+            ]
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -34,6 +46,7 @@ class EspeciesRacas extends \yii\db\ActiveRecord
             [['especie_id', 'titulo'], 'required'],
             [['titulo'], 'string', 'max' => 100],
             [['especie_id'], 'exist', 'skipOnError' => true, 'targetClass' => Especies::className(), 'targetAttribute' => ['especie_id' => 'id']],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
@@ -44,6 +57,7 @@ class EspeciesRacas extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'created_by' => 'Usuário',
             'especie_id' => 'Especie',
             'titulo' => 'Titulo',
         ];
@@ -57,5 +71,15 @@ class EspeciesRacas extends \yii\db\ActiveRecord
     public function getEspecie()
     {
         return $this->hasOne(Especies::className(), ['id' => 'especie_id']);
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 }

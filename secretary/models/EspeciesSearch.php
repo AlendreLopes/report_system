@@ -18,7 +18,7 @@ class EspeciesSearch extends Especies
     {
         return [
             [['id'], 'integer'],
-            [['titulo'], 'safe'],
+            [['created_by', 'titulo'], 'safe'],
         ];
     }
 
@@ -61,7 +61,8 @@ class EspeciesSearch extends Especies
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
+        $query->andFilterWhere(['like', 'titulo', $this->titulo])
+        ->andFilterWhere(['like', 'created_by', $this->created_by]);
 
         return $dataProvider;
     }

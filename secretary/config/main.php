@@ -46,11 +46,9 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'request' => [
+        /* 'request' => [
             'baseUrl' => $baseUrl,
-        ],
-        */
+        ], */
         'urlManager' => [
             //'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,

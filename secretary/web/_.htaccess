@@ -1,6 +1,20 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine on
+    # Módulo Ativado
+    RewriteEngine On
+    # Define o Diretório raiz
+    RewriteBase /
+    # Determina qual será a página incial do sistema
+    DirectoryIndex index.php
+    # Options + FollowSymLinks
+    # Options Indexes order deny,allow
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . index.php
-</IfModule>
+    # Visualiza a Página Principal
+    # index.php?r=convenios%2Fview&id=798
+    RewriteRule ^\/?([a-z_-]+)\/?$ index.php?r=$1 [L]
+    # Listagem Página + Indice
+    # RewriteRule ^\/?([a-z_-]+)\/?([0-9]+)\/?$ index.php?pagina=$1&indice=$2 [L]
+    # Listagem Página + Letra
+    RewriteRule ^\/?([a-z_-]+)\/?([a-z_-]+)\/?([0-9]+)\/?$ index.php?pagina=$1&$2&id=$3 [L]
+    # RewriteRule . index.php
+</IfModule> 
