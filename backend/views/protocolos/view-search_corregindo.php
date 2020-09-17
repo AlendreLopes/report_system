@@ -6,40 +6,29 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 //
 use backend\models\Protocolos;
-use backend\models\Convenios;
-use backend\models\LaudosApCitopatologia;
-use backend\models\LaudosApCitopatologiaVaginal;
-use backend\models\LaudosApHistopatologia;
-use backend\models\LaudosDiEndoscopia;
-use backend\models\LaudosDiRaioX;
-use backend\models\LaudosDiRaioXContrastado;
-use backend\models\LaudosDiUsAparelhoFeminino;
-use backend\models\LaudosDiUsEstrutura;
-use backend\models\LaudosDiUsExploratoria;
-use backend\models\LaudosDiUsGestacional;
-use backend\models\LaudosDiUsObstetrica;
-use backend\models\LaudosDiUsPosParto;
-// Procura o Protocolo
+//
 $numberOrUsername = $searchModel["attributes"]["username"];
 $protocolo = Protocolos::find()
-->select('protocolos.*')
+->select(['id','convenio_id','username','motedepass','paciente','especie_raca','genero','data_cadastro'])
 ->where(['like', 'numero', $numberOrUsername])
 ->orFilterWhere(['like', 'username', $numberOrUsername])
+->with([
+    'convenios',
+    'laudosApCitopatologia',
+    'laudosApCitopatologiaVaginal',
+    'laudosApHistopatologia',
+    'laudosDiEndoscopia',
+    'laudosDiRaioX',
+    'laudosDiRaioXContrastado',
+    'laudosDiUsAparelhoFeminino',
+    'laudosDiUsEstrutura',
+    'laudosDiUsExploratoria',
+    'laudosDiUsGestacional',
+    'laudosDiUsObstetrica',
+    'laudosDiUsPosParto',
+])
 ->one();
-// Relacionamentos
-$convenios = Convenios::findOne(['id' => $protocolo['convenios_id']]);
-$apCitopalogia = LaudosApCitopatologia::findOne(['protocolos_id' => $protocolo['id']]);
-$apCitopatologiaVaginal = LaudosApCitopatologiaVaginal::findOne(['protocolos_id' => $protocolo['id']]);
-$apHistopatologia = LaudosApHistopatologia::findOne(['protocolos_id' => $protocolo['id']]);
-$diEndoscopia = LaudosDiEndoscopia::findOne(['protocolos_id' => $protocolo['id']]);
-$diRaioX = LaudosDiRaioX::findOne(['protocolos_id' => $protocolo['id']]);
-$diRaioXContrastado = LaudosDiRaioXContrastado::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsAparelhoFeminino = LaudosDiUsAparelhoFeminino::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsEstrutura = LaudosDiUsEstrutura::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsExploratoria = LaudosDiUsExploratoria::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsGestacional = LaudosDiUsGestacional::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsObstetrica = LaudosDiUsObstetrica::findOne(['protocolos_id' => $protocolo['id']]);
-$diUsPosParto = LaudosDiUsPosParto::findOne(['protocolos_id' => $protocolo['id']]);
+//
 // Variável para exibir se há ou não laudos para impressão
 $readyToPrint = 0;
 /* @var $this yii\web\View */
@@ -73,7 +62,7 @@ $readyToPrint = 0;
         </div>
         <hr>
         <?php
-        if($apCitopatologia){
+        if($protocolo['laudosApCitopatologia']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -92,15 +81,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-citopatologia/view', 'id' => $apCitopatologia['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-citopatologia/view', 'id' => $protocolo['laudosApCitopatologia']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($apCitopatologia['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosApCitopatologia']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-ap-citopatologia/delete', 'id' => $apCitopatologia['id']], [
+                            <?= Html::a('Excluir', ['laudos-ap-citopatologia/delete', 'id' => $protocolo['laudosApCitopatologia']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -114,7 +103,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($apCitopatologiaVaginal){
+        if($protocolo['laudosApCitopatologiaVaginal']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -133,15 +122,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-citopatologia-vaginal/view', 'id' => $apCitopatologiaVaginal['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-citopatologia-vaginal/view', 'id' => $protocolo['laudosApCitopatologiaVaginal']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($apCitopatologiaVaginal['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosApCitopatologiaVaginal']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-ap-citopatologia-vaginal/delete', 'id' => $apCitopatologiaVaginal['id']], [
+                            <?= Html::a('Excluir', ['laudos-ap-citopatologia-vaginal/delete', 'id' => $protocolo['laudosApCitopatologiaVaginal']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -155,7 +144,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($apHistopatologia){
+        if($protocolo['laudosApHistopatologia']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -174,15 +163,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-histopatologia/view', 'id' => $apHistopatologia['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-histopatologia/view', 'id' => $protocolo['laudosApHistopatologia']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($apHistopatologia['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosApHistopatologia']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-ap-histopatologia/delete', 'id' => $apHistopatologia['id']], [
+                            <?= Html::a('Excluir', ['laudos-ap-histopatologia/delete', 'id' => $protocolo['laudosApHistopatologia']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -196,7 +185,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($apNecropsia){
+        if($protocolo['laudosApNecropsia']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -215,15 +204,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-necropsia/view', 'id' => $apNecropsia['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-ap-necropsia/view', 'id' => $protocolo['laudosApNecropsia']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($apNecropsia['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosApNecropsia']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-ap-necropsia/delete', 'id' => $apNecropsia['id']], [
+                            <?= Html::a('Excluir', ['laudos-ap-necropsia/delete', 'id' => $protocolo['laudosApNecropsia']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -237,7 +226,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diEndoscopia){
+        if($protocolo['laudosDiEndoscopia']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -256,15 +245,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-endoscopia/view', 'id' => $diEndoscopia['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-endoscopia/view', 'id' => $protocolo['laudosDiEndoscopia']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diEndoscopia['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiEndoscopia']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-endoscopia/delete', 'id' => $diEndoscopia['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-endoscopia/delete', 'id' => $protocolo['laudosDiEndoscopia']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -278,7 +267,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diRaioX){
+        if($protocolo['laudosDiRaioX']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -297,15 +286,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-raio-x/view', 'id' => $diRaioX['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-raio-x/view', 'id' => $protocolo['laudosDiRaioX']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diRaioX['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiRaioX']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-raio-x/delete', 'id' => $diRaioX['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-raio-x/delete', 'id' => $protocolo['laudosDiRaioX']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -319,7 +308,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diRaioXContrastado){
+        if($protocolo['laudosDiRaioXContrastado']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -338,15 +327,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-raio-x-contrastado/view', 'id' => $diRaioXContrastado['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-raio-x-contrastado/view', 'id' => $protocolo['laudosDiRaioXContrastado']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diRaioXContrastado['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiRaioXContrastado']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-raio-x-contrastado/delete', 'id' => $diRaioXContrastado['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-raio-x-contrastado/delete', 'id' => $protocolo['laudosDiRaioXContrastado']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -360,7 +349,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsAparelhoFeminino){
+        if($protocolo['laudosDiUsAparelhoFeminino']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -379,15 +368,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-aparelho-feminino/view', 'id' => $diUsAparelhoFeminino['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-aparelho-feminino/view', 'id' => $protocolo['laudosDiUsAparelhoFeminino']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsAparelhoFeminino['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsAparelhoFeminino']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-aparelho-feminino/delete', 'id' => $diUsAparelhoFeminino['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-aparelho-feminino/delete', 'id' => $protocolo['laudosDiUsAparelhoFeminino']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -401,7 +390,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsEstrutura){
+        if($protocolo['laudosDiUsEstrutura']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -420,15 +409,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-estrutura/view', 'id' => $diUsEstrutura['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-estrutura/view', 'id' => $protocolo['laudosDiUsEstrutura']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsEstrutura['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsEstrutura']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-estrutura/delete', 'id' => $diUsEstrutura['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-estrutura/delete', 'id' => $protocolo['laudosDiUsEstrutura']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -442,7 +431,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsExploratoria){
+        if($protocolo['laudosDiUsExploratoria']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -461,15 +450,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-exploratoria/view', 'id' => $diUsExploratoria['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-exploratoria/view', 'id' => $protocolo['laudosDiUsExploratoria']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsExploratoria['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsExploratoria']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-exploratoria/delete', 'id' => $diUsExploratoria['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-exploratoria/delete', 'id' => $protocolo['laudosDiUsExploratoria']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -483,7 +472,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsGestacional){
+        if($protocolo['laudosDiUsGestacional']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -502,15 +491,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-gestacional/view', 'id' => $diUsGestacional['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-gestacional/view', 'id' => $protocolo['laudosDiUsGestacional']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsGestacional['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsGestacional']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-gestacional/delete', 'id' => $diUsGestacional['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-gestacional/delete', 'id' => $protocolo['laudosDiUsGestacional']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -524,7 +513,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsObstetrica){
+        if($protocolo['laudosDiUsObstetrica']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -543,15 +532,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-obstetrica/view', 'id' => $diUsObstetrica['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-obstetrica/view', 'id' => $protocolo['laudosDiUsObstetrica']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsObstetrica['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsObstetrica']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-obstetrica/delete', 'id' => $diUsObstetrica['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-obstetrica/delete', 'id' => $protocolo['laudosDiUsObstetrica']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
@@ -565,7 +554,7 @@ $readyToPrint = 0;
             <hr>
             <?php  
         }
-        if($diUsPosParto){
+        if($protocolo['laudosDiUsPosParto']){
             $readyToPrint = 1;
             ?>
             <div class="table-responsive">
@@ -584,15 +573,15 @@ $readyToPrint = 0;
                     </tr>
                     <tr>
                         <td>
-                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-pos-parto/view', 'id' => $diUsPosParto['id']]), ['title' => 'Cadastrar Laudos']);?>
+                            <?= Html::a($protocolo['username'], Url::to(['laudos-di-us-pos-parto/view', 'id' => $protocolo['laudosDiUsPosParto']['id']]), ['title' => 'Cadastrar Laudos']);?>
                         </td>
                         <td><?= $protocolo['paciente'];?></td>
                         <td><?= $protocolo['genero'];?></td>
-                        <td><?= $convenios['titulo'];?></td>
+                        <td><?= $protocolo['convenios']['titulo'];?></td>
                         <td><?= Yii::$app->formatter->asDate($protocolo['data_cadastro']);?></td>
-                        <td><?= Yii::$app->formatter->asDate($diUsPosParto['concluido']);?></td>
+                        <td><?= Yii::$app->formatter->asDate($protocolo['laudosDiUsPosParto']['concluido']);?></td>
                         <td>
-                            <?= Html::a('Excluir', ['laudos-di-us-pos-parto/delete', 'id' => $diUsPosParto['id']], [
+                            <?= Html::a('Excluir', ['laudos-di-us-pos-parto/delete', 'id' => $protocolo['laudosDiUsPosParto']['id']], [
                                 'class' => 'btn btn-danger',
                                 'data' => [
                                     'confirm' => 'Você tem certeza que deseja deletar este Laudo?',
