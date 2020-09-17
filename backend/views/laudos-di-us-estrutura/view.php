@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\laudos\models\LaudosDiUsEstrutura */
 
-$this->title = "Protocolo: ".$model->protocolos->username;
+$this->title = "Laudo US Estruturas";
 $this->params['breadcrumbs'][] = ['label' => 'Laudos', 'url' => ['/laudos/protocolos/index']];
 $this->params['breadcrumbs'][] = ['label' => 'Laudos Di Us Estruturas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
