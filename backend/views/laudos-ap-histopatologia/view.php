@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('Imprimir', 
-        ['/index.php/protocolos/view-print', 'id' => $model->protocolos_id], 
+        ['/protocolos/view-print', 'id' => $model->protocolos_id], 
         [
             'class' => 'btn btn-primary',
             'style' => 'float:right;'
