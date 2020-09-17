@@ -47,6 +47,7 @@ $readyToPrint = 0;
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\laudos\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+$this->title = "Pesquisa de Laudos";
 ?>
 
 <div class="protocolos-index">
