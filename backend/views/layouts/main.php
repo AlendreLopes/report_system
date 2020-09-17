@@ -35,7 +35,7 @@ AppAsset::register($this);
             'brandLabel' => 'Página inicial',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar-inverse navbar-default',
+                'class' => 'navbar navbar-inverse navbar-fixed-top',
             ],
         ]);
         // display Users to admin+ roles
@@ -92,9 +92,11 @@ AppAsset::register($this);
         ]);
         NavBar::end();
         ?>
-        <?php //= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="page-header" style="margin: 52px 0 20px;">
+            <?php //= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],]) ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
     </div>
 </div>
 

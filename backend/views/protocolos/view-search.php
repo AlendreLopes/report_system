@@ -52,7 +52,7 @@ $readyToPrint = 0;
                     <th>Raça</th>
                     <th>Senha</th>
                 </tr>
-                <tr>
+                <tr class="text-center" style="text-transform: uppercase;font-weight: bold;">
                     <td><?= Html::a($protocolo['username'], Url::to(['protocolos/create-report', 'id' => $protocolo['id']]), ['title' => 'Cadastrar Laudos']);?></td>
                     <td><?= $protocolo['paciente'];?></td>
                     <td><?= $protocolo['especie_raca'];?></td>
