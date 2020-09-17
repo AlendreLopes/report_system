@@ -27,6 +27,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+        <?= Html::a('Imprimir', 
+        ['/index.php/protocolos/view-print', 'id' => $model->protocolos_id], 
+        [
+            'class' => 'btn btn-primary',
+            'style' => 'float:right;'
         ]) ?>
     </p>
 

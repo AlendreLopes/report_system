@@ -6,9 +6,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\modules\laudos\models\LaudosApCitopatologia */
 
-$this->title = "Protocolo: ".$model->protocolos->username;
+/* $this->title = "Protocolo: ".$model->protocolos->username;
 $this->params['breadcrumbs'][] = ['label' => 'Laudos Ap Citopatologias', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $this->title; */
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="laudos-ap-citopatologia-view">
@@ -23,6 +23,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
+        ]) ?>
+        <?= Html::a('Imprimir', 
+        ['/index.php/protocolos/view-print', 'id' => $model->protocolos_id], 
+        [
+            'class' => 'btn btn-primary',
+            'style' => 'float:right;'
         ]) ?>
     </p>
 
