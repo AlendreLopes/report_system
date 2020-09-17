@@ -10,6 +10,7 @@ use backend\models\Convenios;
 use backend\models\LaudosApCitopatologia;
 use backend\models\LaudosApCitopatologiaVaginal;
 use backend\models\LaudosApHistopatologia;
+use backend\models\LaudosApNecropsia;
 use backend\models\LaudosDiEndoscopia;
 use backend\models\LaudosDiRaioX;
 use backend\models\LaudosDiRaioXContrastado;
@@ -27,10 +28,11 @@ $protocolo = Protocolos::find()
 ->orFilterWhere(['like', 'username', $numberOrUsername])
 ->one();
 // Relacionamentos
-$convenios = Convenios::findOne(['id' => $protocolo['convenios_id']]);
-$apCitopalogia = LaudosApCitopatologia::findOne(['protocolos_id' => $protocolo['id']]);
+$convenios = Convenios::findOne(['id' => $protocolo['convenio_id']]);
+$apCitopatologia = LaudosApCitopatologia::findOne(['protocolos_id' => $protocolo['id']]);
 $apCitopatologiaVaginal = LaudosApCitopatologiaVaginal::findOne(['protocolos_id' => $protocolo['id']]);
 $apHistopatologia = LaudosApHistopatologia::findOne(['protocolos_id' => $protocolo['id']]);
+$apNecropsia = LaudosApNecropsia::findOne(['protocolos_id' => $protocolo['id']]);
 $diEndoscopia = LaudosDiEndoscopia::findOne(['protocolos_id' => $protocolo['id']]);
 $diRaioX = LaudosDiRaioX::findOne(['protocolos_id' => $protocolo['id']]);
 $diRaioXContrastado = LaudosDiRaioXContrastado::findOne(['protocolos_id' => $protocolo['id']]);

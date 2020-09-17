@@ -84,6 +84,15 @@ class LaudosApNecropsia extends \yii\db\ActiveRecord
             'created_by' => 'Usuário',
         ];
     }
+    /**
+     * Gets query for [[Protocolos]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProtocolos()
+    {
+        return $this->hasOne(Protocolos::className(), ['id' => 'protocolos_id']);
+    }
 
     /**
      * Gets query for [[CreatedBy]].
