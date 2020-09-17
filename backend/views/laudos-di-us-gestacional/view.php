@@ -17,9 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
+        <?= Html::encode($this->title) ?>
         <?= Html::a('Atualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Deletar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
