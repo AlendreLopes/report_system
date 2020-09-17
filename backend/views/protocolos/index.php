@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'    => 'raw',
                 'label'     => 'Protocolos',
                 'value'     => function ($model) {
-                    return Html::a($model->username, Url::to(Url::to(['protocolos/create-report', 'id' => $model->id])), ['title' => 'Cadastrar Laudos']);
+                    return Html::a($model->username, Url::to(['protocolos/create-report', 'id' => $model->id]), ['title' => 'Cadastrar Laudos']);
                 }
             ],
             [
