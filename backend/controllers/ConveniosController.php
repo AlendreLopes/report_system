@@ -4,7 +4,6 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Convenios;
-use backend\models\ConveniosOld;
 use backend\models\ConveniosSearch;
 use backend\controllers\AppController;
 use yii\web\NotFoundHttpException;

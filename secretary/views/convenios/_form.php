@@ -9,7 +9,6 @@ use secretary\assets\ZipCodeAsset;
 // Teste
 // $alterado == 1 ? $config=1 :$config=0;
 ZipCodeAsset::register($this);
-$emailProvisional = date('hs')."_convenio@exemplo.com";
 ?>
 
 <div class="convenios-form">
@@ -17,6 +16,8 @@ $emailProvisional = date('hs')."_convenio@exemplo.com";
     <?php $form = ActiveForm::begin(); ?>
     <?php
     if ($model->scenario == "create") {
+        $emailString = Yii::$app->getSecurity()->generateRandomString(8);
+        $emailProvisional = $emailString."@exemplo.com";
         $getPassw = Yii::$app->getSecurity()->generateRandomString(8);
     ?>
         <!-- Create -->

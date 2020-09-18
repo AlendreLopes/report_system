@@ -42,8 +42,9 @@ use yii\behaviors\BlameableBehavior;
  */
 class Convenios extends \yii\db\ActiveRecord
 {
-    const SCENARIO_CREATE = 'create';
-    const SCENARIO_UPDATE = 'update';
+    const SCENARIO_DEFAULT = 'default';
+    const SCENARIO_CREATE  = 'create';
+    const SCENARIO_UPDATE  = 'update';
     public $emailConfirmar;
     public $telefoneConfirmar;
     public $celularConfirmar;
@@ -120,8 +121,9 @@ class Convenios extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            self::SCENARIO_CREATE => ['titulo', 'username', 'email', 'emailConfirmar', 'senha'],
-            self::SCENARIO_UPDATE => ['titulo', 'username', 'email', 'emailConfirmar'],
+            self::SCENARIO_DEFAULT => ['titulo', 'username', 'email', 'emailConfirmar', 'senha'],
+            self::SCENARIO_CREATE  => ['titulo', 'username', 'email', 'emailConfirmar', 'senha'],
+            self::SCENARIO_UPDATE  => ['titulo', 'username', 'email', 'emailConfirmar'],
         ];
     }
     /**

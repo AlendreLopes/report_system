@@ -14,7 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1>
         <?= Html::encode($this->title) ?>
-        <?= Html::a('Cadastrar Convenios', ['create'], ['class' => 'btn btn-success', 'style' => 'float:right;']) ?>
+        <span class="pull-right">
+            <?= Html::a('Cadastrar Convenios', ['create'], ['class' => 'btn btn-success']) ?>
+        </span>
     </h1>
 
     <?php Pjax::begin(); ?>
