@@ -12,13 +12,16 @@ return [
     'name'        => '[ Sistema de Conveniados ]',
     'language'    => 'pt_BR',
     'layout'      => 'main',
-    //'defaultRoute'=> 'agreements',
+    'defaultRoute'=> 'protocolos',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'agreements\controllers',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-agreements',
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
         'user' => [
             'identityClass' => 'agreements\models\AgreementsUser',

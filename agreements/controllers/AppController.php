@@ -35,7 +35,7 @@ use Yii;
                     [
                         'roles' => ['@'],
                         'allow' => true,
-                        'actions' => ['index', 'about', 'contact', 'logout'],
+                        'actions' => ['index', 'about', 'contact', 'view', 'view-print', 'logout'],
                     ],
                     [
                         'roles' => ['secretary'],
