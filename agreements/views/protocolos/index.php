@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
@@ -13,13 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="protocolos-index">
 
-    <p>
-        <h3><?= Html::encode($this->title) ?></h3>
-    </p>
-
     <?php Pjax::begin(); ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <tr>

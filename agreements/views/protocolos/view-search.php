@@ -6,14 +6,19 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$this->title = 'Laudos';
+$this->title = 'Resultado da pesquisa';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="table-responsive">
 
-    <?php echo $this->render('@app/views/laudos-menu/menuLaudos'); ?>
-    <hr>
+    <p>
+        <h3><?= Html::encode($this->title) ?></h3>
+    </p>
+
     <?php Pjax::begin(); ?>
+    
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
@@ -26,15 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'    => 'raw',
                 'label'     => 'Protocolos',
                 'value'     => function ($model) {
-                    return Html::a($model->username, Url::to(['protocolos/create-report', 'id' => $model->id]), ['title' => 'Cadastrar Laudos']);
+                    return Html::a($model->username, 
+                    Url::to(['protocolos/view', 'id' => $model->id]), 
+                    ['title' => 'Visualizar Laudo']);
                 }
             ],
-            [
-                'attribute' => 'convenio_id',
-                'value'     => 'convenios.titulo',
-            ],
             'requisitante',
+            'proprietario',
             'paciente',
+            'idade',
+            'genero',
             'especie',
             'especie_raca',
         ],

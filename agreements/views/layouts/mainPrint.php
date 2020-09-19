@@ -7,7 +7,8 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
+use agreements\assets\AppAsset;
+use agreements\assets\PrintReportPdfAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
@@ -22,8 +23,15 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!-- Set page size here: A5, A4 or A3 -->
+    <!-- Set also "landscape" if you need -->
+    <!-- <style>@page { size: A4 }</style> -->
+    <style>@page { size: A4 }</style>
 </head>
-<body>
+<!-- Set "A5", "A4" or "A3" for class name -->
+<!-- Set also "landscape" if you need -->
+<body class="A4">
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">

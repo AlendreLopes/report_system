@@ -95,19 +95,19 @@ class Protocolos extends \yii\db\ActiveRecord
             'id' => 'ID',
             'convenio_id' => 'Convenio ID',
             'numero' => 'Numero',
-            'username' => 'Username',
+            'username' => 'Protocolo',
             'motedepass' => 'Motedepass',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
             'account_activation_token' => 'Account Activation Token',
             'status' => 'Status',
             'auth_key' => 'Auth Key',
-            'requisitante' => 'Requisitante',
-            'proprietario' => 'Proprietario',
+            'requisitante' => 'Veterinário',
+            'proprietario' => 'Tutor',
             'paciente' => 'Paciente',
-            'especie' => 'Especie',
-            'especie_raca' => 'Especie Raca',
-            'genero' => 'Genero',
+            'especie' => 'Espécie',
+            'especie_raca' => 'Raça',
+            'genero' => 'Sexo',
             'idade' => 'Idade',
             'contato' => 'Contato',
             'desconto' => 'Desconto',
@@ -121,6 +121,17 @@ class Protocolos extends \yii\db\ActiveRecord
             'data_expira' => 'Data Expira',
             'created_by' => 'Created By',
         ];
+    }
+
+
+    /**
+     * Gets query for [[Convenios]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getConvenios()
+    {
+        return $this->hasOne(Convenios::className(), ['id' => 'convenio_id']);
     }
 
     /**
@@ -141,6 +152,26 @@ class Protocolos extends \yii\db\ActiveRecord
     public function getLaudosApCitopatologiaVaginal()
     {
         return $this->hasOne(LaudosApCitopatologiaVaginal::className(), ['protocolos_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[LaudosApHistopatologia]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLaudosApHistopatologia()
+    {
+        return $this->hasOne(LaudosApHistopatologia::className(), ['protocolos_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[LaudosApNecropsia]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLaudosApNecropsia()
+    {
+        return $this->hasOne(LaudosApNecropsia::className(), ['protocolos_id' => 'id']);
     }
 
     /**
@@ -168,9 +199,9 @@ class Protocolos extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getLaudosDiRaioXContrastados()
+    public function getLaudosDiRaioXContrastado()
     {
-        return $this->hasMany(LaudosDiRaioXContrastado::className(), ['protocolos_id' => 'id']);
+        return $this->hasOne(LaudosDiRaioXContrastado::className(), ['protocolos_id' => 'id']);
     }
 
     /**
@@ -242,7 +273,7 @@ class Protocolos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
-
+    
     /**
      * Gets query for [[ProtocolosLaudosSolicitados]].
      *

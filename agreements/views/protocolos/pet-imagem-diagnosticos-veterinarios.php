@@ -4,10 +4,53 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Protocolos */
-
+function returnMonth(Type $month = null)
+{
+    switch ($month) {
+        case '01':
+            echo "Janeiro";
+            break;
+        case '02':
+            echo "Fevereiro";
+            break;
+        case '03':
+            echo "Março";
+            break;
+        case '04':
+            echo "Abril";
+            break;
+        case '05':
+            echo "Maio";
+            break;
+        case '06':
+            echo "Junho";
+            break;
+        case '07':
+            echo "Junho";
+            break;
+        case '08':
+            echo "Agosto";
+            break;
+        case '09':
+            echo "Setembro";
+            break;
+        case '10':
+            echo "Outubro";
+            break;
+        case '11':
+            echo "Novembro";
+            break;
+        case '12':
+            echo "Dezembro";
+            break;
+        default:
+            # code...
+            break;
+    }
+}
 \yii\web\YiiAsset::register($this);
 //
-use backend\models\Protocolos;
+use agreements\models\Protocolos;
 //
 $protocolo = Protocolos::find()
     ->with([
@@ -34,29 +77,41 @@ $protocolo = Protocolos::find()
     $apCitopatologia = $protocolo['laudosApCitopatologia'];
     if ($apCitopatologia) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+    <div class="table-responsive">
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Citopatologia</th>
             </tr>
@@ -93,39 +148,51 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-            Rodapé
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
+    </div>
     <?php
     }
-
     $apCitopatologiaVaginal = $protocolo['laudosApCitopatologiaVaginal'];
     if ($apCitopatologiaVaginal) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Citopatologia Vaginal</th>
             </tr>
@@ -220,39 +287,49 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-            Rodapé
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     }
-
     $apHistopatologia = $protocolo['laudosApHistopatologia'];
     if ($apHistopatologia) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Histopatologia</th>
             </tr>
@@ -289,9 +366,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-            Rodapé
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     }
@@ -299,29 +377,40 @@ $protocolo = Protocolos::find()
     $di_endoscopia = $protocolo['laudosDiEndoscopia'];
     if ($di_endoscopia) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Endoscopia</th>
             </tr>
@@ -366,9 +455,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-            Rodapé
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -376,29 +466,40 @@ $protocolo = Protocolos::find()
     $di_raio_x = $protocolo['laudosDiRaioXes'];
     if ($di_raio_x) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Raio-x</th>
             </tr>
@@ -452,9 +553,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-            Rodapé
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -462,29 +564,39 @@ $protocolo = Protocolos::find()
     $di_raio_x_contrastado = $protocolo['laudosDiRaioXContrastado'];
     if ($di_raio_x_contrastado) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Raio-x Contrastado</th>
             </tr>
@@ -529,8 +641,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -538,29 +652,40 @@ $protocolo = Protocolos::find()
     $di_us_aparelho_feminino = $protocolo['laudosDiUsAparelhoFeminino'];
     if ($di_us_aparelho_feminino) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia Aparelho Feminino</th>
             </tr>
@@ -581,9 +706,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
-
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -591,28 +717,39 @@ $protocolo = Protocolos::find()
     $di_us_estrutura = $protocolo['laudosDiUsEstrutura'];
     if ($di_us_estrutura) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia de Estruturas</th>
             </tr>
@@ -641,8 +778,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -650,28 +789,39 @@ $protocolo = Protocolos::find()
     $di_us_exploratoria = $protocolo['laudosDiUsExploratoria'];
     if ($di_us_exploratoria) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia Exploratória</th>
             </tr>
@@ -692,8 +842,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -701,28 +853,39 @@ $protocolo = Protocolos::find()
     $di_us_gestacional = $protocolo['laudosDiUsGestacional'];
     if ($di_us_gestacional) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia Gestacional</th>
             </tr>
@@ -743,8 +906,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -752,29 +917,40 @@ $protocolo = Protocolos::find()
     $di_us_obstetrica = $protocolo['laudosDiUsObstetrica'];
     if ($di_us_obstetrica) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="body" class="table table-striped">
+
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia Obstétrica</th>
             </tr>
@@ -795,8 +971,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     } ?>
@@ -804,28 +982,39 @@ $protocolo = Protocolos::find()
     $di_us_pos_parto = $protocolo['laudosDiUsPosParto'];
     if ($di_us_pos_parto) {
     ?>
-        <table id="header" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="header" class="table table-striped">
             <tr>
-                <td width="15%">Clínica:</td>
-                <td><?= $model->convenios->titulo; ?></td>
-                <td width="15%">Veterinário:</td>
-                <td><?= $model->requisitante; ?></td>
+                <td width="15%">Protocolo:</td>
+                <td><?= $model->username; ?></td>
+                <td width="15%">Solicitado:</td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro,"d/M/Y"); ?></td>
             </tr>
             <tr>
                 <td width="15%">Paciente:</td>
                 <td><?= $model->paciente; ?></td>
-                <td width="15%">Proprietário:</td>
-                <td><?= $model->proprietario; ?></td>
+                <td width="15%">Idade:</td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td width="15%">Espécie:</td>
                 <td><?= $model->especie; ?></td>
+                <td width="15%">Sexo:</td>
+                <td><?= $model->genero; ?></td>
+            </tr>
+            <tr>
                 <td width="15%">Raça:</td>
                 <td><?= $model->especie_raca; ?></td>
+                <td width="15%">Tutor:</td>
+                <td><?= $model->proprietario; ?></td>
+            </tr>
+            <tr>
+                <td width="15%">Clínica:</td>
+                <td><?= $model->convenios->titulo; ?></td>
+                <td width="15%">Dr(a):</td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
-        <table id="body" class="table-responsive table table-striped">
+        <table id="body" class="table table-striped">
             <tr>
                 <th style="text-align: center; text-transform: uppercase;">Laudo de Ultrassonografia Pós Parto</th>
             </tr>
@@ -846,8 +1035,10 @@ $protocolo = Protocolos::find()
                 </td>
             </tr>
         </table>
-        <table id="footer" class="table-responsive table table-striped">
-            <!-- code -->
+        <table id="footer" class="table table-striped">
+            <tr>
+                <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+            </tr>
         </table>
     <?php
     }?>
