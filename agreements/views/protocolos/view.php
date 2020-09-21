@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Protocolos */
@@ -28,7 +29,6 @@ $protocolo = Protocolos::find()
 $readyToPrint = 0;
 //
 $this->title = "Impressão do Protocolo: " . $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Laudos', 'url' => ['/protocolos/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -889,18 +889,24 @@ if ($di_us_pos_parto) {
 }
 if($readyToPrint){
     $this->params['breadcrumbs'][] = [
-        'label' => 'Imprimir Laudos', 
+        'label' => 'Imprimir', 
         'url' => ['/protocolos/pet-imagem-diagnosticos-veterinarios', 'id' => $model->id],
         'options' => [ 'target' => '_blank' ]
     ];
 }else{
     $this->params['breadcrumbs'][] = ['label' => 'Sem Laudos para Impressão', 'url' => ['/protocolos/index']];
     ?>
-    <div class="row">
-        <div class="col-lg-12">
-            <h2>Não há laudos para impressão.</h2>
-            <h3 style="text-align:center;"><?= Html::a("Voltar", Url::to(Url::to(['protocolos/index'])), ['title' => 'Voltar']);?></h3>
-        </div>
+    <div class="jumbotron text-center">
+        <h2>Em breve o laudo solicitado estará disponível.</h2>
+        <br>
+        <br>
+        <h2>Não há laudos para impressão.</h2>
+        <br>
+        <br>
+        <br>
+        <p class="lead">
+            <h3><?= Html::a("Voltar", Url::to(Url::to(['protocolos/index'])), ['title' => 'Voltar']);?></h3>
+        </p>
     </div>
     <?php
 }
