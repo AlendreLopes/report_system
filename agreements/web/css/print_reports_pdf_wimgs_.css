@@ -1,91 +1,83 @@
-@page {
-    margin: 0
-}
-
+/*
+	Regras para Impressão
+*/
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 body {
-    margin: 0
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 5px;
 }
 
-.sheet {
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-    box-sizing: border-box;
+.body {
+    min-width: 900px;
+    max-width: 900px;
+    min-height: 1024px;
+    max-height: inherit;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #FFF;
+}
+
+.pet-imagem-brands {
+    float: right;
+    margin-top: 150px;
+}
+
+.header {
+    min-width: 900px;
+    max-width: 900px;
+    min-height: 100px;
+    max-height: 100px;
+    background: url(/public/image/petimagem_logo_c_850.jpg) top left no-repeat;
+}
+
+.container {
+    min-width: 900px;
+    max-width: 900px;
+    min-height: 850px;
+    max-height: inherit;
+}
+
+.footer {
+    position: static;
+    bottom: 0px;
+    min-width: 900px;
+    max-width: 900px;
+    min-height: 100px;
+    max-height: 100px;
+    font-size: 14px;
+    border: dotted #000;
+    border-width: 1px 0 0 0;
+}
+
+.page-break {
     page-break-after: always;
 }
 
-/** Paper sizes **/
-body.A3               .sheet { width: 297mm; height: 419mm }
-body.A3.landscape     .sheet { width: 420mm; height: 296mm }
-body.A4               .sheet { width: 210mm; height: 296mm }
-body.A4.landscape     .sheet { width: 297mm; height: 209mm }
-body.A5               .sheet { width: 148mm; height: 209mm }
-body.A5.landscape     .sheet { width: 210mm; height: 147mm }
-body.letter           .sheet { width: 216mm; height: 279mm }
-body.letter.landscape .sheet { width: 280mm; height: 215mm }
-body.legal            .sheet { width: 216mm; height: 356mm }
-body.legal.landscape  .sheet { width: 357mm; height: 215mm }
-
-/** Padding area **/
-.sheet.padding-10mm {
-    padding: 10mm
+table {
+    margin-left: 5px;
 }
 
-.sheet.padding-15mm {
-    padding: 15mm
+table .no_bold {
+    font-weight: normal;
 }
 
-.sheet.padding-20mm {
-    padding: 20mm
+table .altrow td {
+    background: #f5f5f5;
 }
 
-.sheet.padding-25mm {
-    padding: 25mm
+.code-pass {
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/** For screen preview **/
-@media screen {
-    body {
-        background: #e0e0e0
-    }
-
-    .sheet {
-        background: white;
-        box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
-        margin: 5mm auto;
-    }
+.text {
+    color: #333;
+    font-weight: bold;
 }
 
-/** Fix for Chrome issue #273306 **/
-@media print {
-    body.A3.landscape {
-        width: 420mm
-    }
-
-    body.A3,
-    body.A4.landscape {
-        width: 297mm
-    }
-
-    body.A4,
-    body.A5.landscape {
-        width: 210mm
-    }
-
-    body.A5 {
-        width: 148mm
-    }
-
-    body.letter,
-    body.legal {
-        width: 216mm
-    }
-
-    body.letter.landscape {
-        width: 280mm
-    }
-
-    body.legal.landscape {
-        width: 357mm
-    }
+.text-low {
+    font-size: 10px;
+    font-style: italic;
 }

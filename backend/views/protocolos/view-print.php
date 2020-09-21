@@ -170,8 +170,7 @@
                     <td class="table-body-td-title">Células epiteliais queratinizadas</td>
                 </tr>
                 <tr>
-                    <td class="table-body-td-result">
-                        <?= $apCitopatologiaVaginal->epiteliais_queratinizadas; ?>
+                    <td class="table-body-td-result"><?= $apCitopatologiaVaginal->epiteliais_queratinizadas; ?>
                     </td>
                 </tr>
                 <?php
@@ -184,8 +183,7 @@
                     <td class="table-body-td-title">Células epiteliais não queratinizadas</td>
                 </tr>
                 <tr>
-                    <td class="table-body-td-result">
-                        <?= $apCitopatologiaVaginal->epiteliais_queratinizadas_n; ?>
+                    <td class="table-body-td-result"><?= $apCitopatologiaVaginal->epiteliais_queratinizadas_n; ?>
                     </td>
                 </tr>
                 <?php
@@ -222,8 +220,7 @@
                     <td class="table-body-td-title"><?= $apCitopatologiaVaginal->em_branco; ?></td>
                 </tr>
                 <tr>
-                    <td class="table-body-td-result">
-                        <?= $apCitopatologiaVaginal->em_branco_; ?>
+                    <td class="table-body-td-result"><?= $apCitopatologiaVaginal->em_branco_; ?>
                     </td>
                 </tr>
                 <?php
@@ -419,36 +416,36 @@
         $readyToPrint = 1;
     ?>
     <section class="sheet padding-5mm">
-        <table id="header" class="table table-responsive">
+        <table id="header" class="table table-responsive table-striped">
             <tr>
                 <td class="table-header-td" width="15%">Protocolo:</td>
-                <td class="table-body-td-title"><?= $model->username; ?></td>
+                <td><?= $model->username; ?></td>
                 <td class="table-header-td" width="15%">Solicitado:</td>
-                <td class="table-body-td-title"><?= Yii::$app->formatter->asDate($model->data_cadastro); ?></td>
+                <td><?= Yii::$app->formatter->asDate($model->data_cadastro); ?></td>
             </tr>
             <tr>
                 <td class="table-header-td" width="15%">Paciente:</td>
-                <td class="table-body-td-title"><?= $model->paciente; ?></td>
+                <td><?= $model->paciente; ?></td>
                 <td class="table-header-td" width="15%">Idade:</td>
-                <td class="table-body-td-title"><?= $model->idade; ?></td>
+                <td><?= $model->idade; ?></td>
             </tr>
             <tr>
                 <td class="table-header-td" width="15%">Espécie:</td>
-                <td class="table-body-td-title"><?= $model->especie; ?></td>
+                <td><?= $model->especie; ?></td>
                 <td class="table-header-td" width="15%">Sexo:</td>
-                <td class="table-body-td-title"><?= $model->genero; ?></td>
+                <td><?= $model->genero; ?></td>
             </tr>
             <tr>
                 <td class="table-header-td" width="15%">Raça:</td>
-                <td class="table-body-td-title"><?= $model->especie_raca; ?></td>
+                <td><?= $model->especie_raca; ?></td>
                 <td class="table-header-td" width="15%">Tutor:</td>
-                <td class="table-body-td-title"><?= $model->proprietario; ?></td>
+                <td><?= $model->proprietario; ?></td>
             </tr>
             <tr>
                 <td class="table-header-td" width="15%">Clínica:</td>
-                <td class="table-body-td-title"><?= $model->convenios->titulo; ?></td>
+                <td><?= $model->convenios->titulo; ?></td>
                 <td class="table-header-td" width="15%">Dr(a):</td>
-                <td class="table-body-td-title"><?= $model->requisitante; ?></td>
+                <td><?= $model->requisitante; ?></td>
             </tr>
         </table>
         <table id="body" class="table table-responsive table-striped">
@@ -459,7 +456,7 @@
                 <td class="table-body-td-title">Região:</td>
             </tr>
             <tr>
-                <td style="text-indent: 20px;text-align: justify;">
+                <td class="table-body-td-title">
                     <?= $di_raio_x['regiao']; ?>
                 </td>
             </tr>
@@ -478,9 +475,7 @@
                     <td class="table-body-td-title">Interpretação:</td>
                 </tr>
                 <tr>
-                    <td class="table-body-td-result">
-                        <?= $di_raio_x['interpretacao']; ?>
-                    </td>
+                    <td class="table-body-td-result"><?= $di_raio_x['interpretacao']; ?></td>
                 </tr>
             <?php
             }
@@ -490,9 +485,7 @@
                     <td class="table-body-td-title">Observação:</td>
                 </tr>
                 <tr>
-                    <td class="table-body-td-result">
-                        <?= $di_raio_x['observacao']; ?>
-                    </td>
+                    <td class="table-body-td-result"><?= $di_raio_x['observacao']; ?></td>
                 </tr>
             <?php
             } ?>
@@ -554,7 +547,7 @@
                 <td class="table-body-td-title">Técnica:</td>
             </tr>
             <tr>
-                <td style="text-indent: 20px;text-align: justify;">
+                <td class="table-body-td-title">
                     <?= $di_raio_x_contrastado['tecnica']; ?>
                 </td>
             </tr>
@@ -702,7 +695,7 @@
                 <td class="table-body-td-title">Local:</td>
             </tr>
             <tr>
-                <td style="text-indent: 20px;text-align: justify;">
+                <td class="table-body-td-title">
                     <?= $di_us_estrutura['local']; ?>
                 </td>
             </tr>

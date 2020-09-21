@@ -1,0 +1,47 @@
+/*
+	Regras para Impressão
+*/
+/*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+#header {
+    border: none;
+    background: url('../common/uploads/layout_print/petimagem_reader.jpg') top left no-repeat;
+}
+.table-header-td{
+    font-weight:bold;
+}
+
+#body {
+    margin-top: 10px;
+}
+
+.table-body-th-title{
+    font-weight:bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.table-body-td-title{
+    font-weight:bold;
+}
+
+.table-body-td-result{
+    padding-left: 15px;
+    text-align: justify;
+}
+
+#footer {
+    display: none;
+    visibility: hidden;
+    background: url('../common/uploads/layout_print/petimagem_footer.jpg') top left no-repeat;
+}
+
+.pet-imagem-brands {
+    float: right;
+    margin-top: 150px;
+}
+
+.code-pass {
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}

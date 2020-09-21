@@ -54,12 +54,13 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
-                '<controller:[\w-]+>' => '<controller>/index',
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/update',
+                '<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:[\w-]+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',    
+                /* '<controller:[\w-]+>/<id:\d+>' => '<controller>/update',
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/view-print',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/create-report',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/create-report', */
             ],
         ],
         'formatter' => [

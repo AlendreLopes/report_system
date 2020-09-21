@@ -58,6 +58,14 @@ return [
                 '<controller:[\w-]+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',    
             ],
         ],
+        'formatter' => [
+            'class' => 'common\components\NewFormatter',
+            //'cache' => 'cache',
+            'dateFormat' => 'dd/MM/Y',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => '.',
+            'currencyCode' => 'pt-BR',
+        ],
     ],
     'params' => $params,
 ];

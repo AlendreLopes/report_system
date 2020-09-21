@@ -3,15 +3,16 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use agreements\assets\AppAsset;
+use agreements\assets\PrintReportWImgsAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use agreements\assets\AppAsset;
-use agreements\assets\PrintReportPdfAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+PrintReportWImgsAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
