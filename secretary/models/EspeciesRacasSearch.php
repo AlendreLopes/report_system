@@ -54,8 +54,7 @@ class EspeciesRacasSearch extends EspeciesRacas
             // $query->where('0=1');
             return $dataProvider;
         }
-        $query->join('LEFT JOIN', 'especies', 'especies.id = especies_racas.especie_id');
-        //$query->joinWith('especies');
+        $query->joinWith('especie');
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
