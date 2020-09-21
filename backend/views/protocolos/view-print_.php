@@ -110,6 +110,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -246,6 +251,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -322,6 +332,11 @@
                 <td class="table-body-td-result">
                     <?= Yii::$app->formatter->asDate($apHistopatologia->concluido); ?>
                 </td>
+            </tr>
+        </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
             </tr>
         </table>
     </section>
@@ -408,6 +423,11 @@
                 <td class="table-body-td-result">
                     <?= $di_endoscopia->concluido; ?>
                 </td>
+            </tr>
+        </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
             </tr>
         </table>
     </section>
@@ -505,6 +525,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -591,6 +616,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -651,6 +681,11 @@
                 <td class="table-body-td-result">
                     <?= Yii::$app->formatter->asDate($di_us_aparelho_feminino['concluido']); ?>
                 </td>
+            </tr>
+        </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
             </tr>
         </table>
     </section>
@@ -723,6 +758,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -783,6 +823,11 @@
                 <td class="table-body-td-result">
                     <?= Yii::$app->formatter->asDate($di_us_exploratoria['concluido']); ?>
                 </td>
+            </tr>
+        </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
             </tr>
         </table>
     </section>
@@ -847,6 +892,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -909,6 +959,11 @@
                 </td>
             </tr>
         </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
+            </tr>
+        </table>
     </section>
     <?php
     }
@@ -969,6 +1024,11 @@
                 <td class="table-body-td-result">
                     <?= Yii::$app->formatter->asDate($di_us_pos_parto['concluido']); ?>
                 </td>
+            </tr>
+        </table>
+        <table id="footer" class="table table-responsive table-striped">
+            <tr>
+                <td><?= Yii::$app->formatter->returnMonth(date('m')); ?></td>
             </tr>
         </table>
     </section>

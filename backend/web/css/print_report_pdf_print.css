@@ -41,6 +41,11 @@ body {
     text-align: justify;
 }
 
+#footer {
+    display: none;
+    visibility: hidden;
+}
+
 .textoM {
     font-size: 10px;
     font-style: italic;
