@@ -68,7 +68,7 @@ class Especies extends \yii\db\ActiveRecord
      */
     public function getEspeciesRacas()
     {
-        return $this->hasMany(EspeciesRacas::className(), ['especie_id' => 'id']);
+        return $this->hasOne(EspeciesRacas::className(), ['especie_id' => 'id']);
     }
 
     /**

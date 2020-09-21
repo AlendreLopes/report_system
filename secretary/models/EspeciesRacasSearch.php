@@ -43,7 +43,6 @@ class EspeciesRacasSearch extends EspeciesRacas
         $query = EspeciesRacas::find();
 
         // add conditions that should always apply here
-        $query->join('LEFT JOIN', 'especies', 'especies.id = especies_racas.especie_id');
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -55,7 +54,8 @@ class EspeciesRacasSearch extends EspeciesRacas
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->join('LEFT JOIN', 'especies', 'especies.id = especies_racas.especie_id');
+        //$query->joinWith('especies');
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
