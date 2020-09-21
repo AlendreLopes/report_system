@@ -171,28 +171,42 @@ body.legal.landscape .sheet {
 
 /** Fix for Chrome issue #273306 **/
 @media print {
-    @page {
-        margin: 0.5cm;
+    body.A3.landscape {
+        width: 420mm
     }
-    body.A4 .sheet {
-        width: 205mm;
-        height: 291mm
+
+    body.A3,
+    body.A4.landscape {
+        width: 297mm
     }
-    
-    body.A4.landscape .sheet {
-        width: 292mm;
-        height: 204mm
+
+    body.A4,
+    body.A5.landscape {
+        width: 210mm
     }
-    
+
+    body.A5 {
+        width: 148mm
+    }
+
+    body.letter,
+    body.legal {
+        width: 216mm
+    }
+
+    body.letter.landscape {
+        width: 280mm
+    }
+
+    body.legal.landscape {
+        width: 357mm
+    }
 }
 
 #header {
     width: 720px;
     max-width: 720px;
     border: none;
-}
-.table-header-td{
-    font-weight:bold;
 }
 
 #body {
@@ -201,25 +215,9 @@ body.legal.landscape .sheet {
     max-width: 720px;
 }
 
-.table-body-th-title{
-    font-weight:bold;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.table-body-td-title{
-    font-weight:bold;
-}
-
-.table-body-td-result{
-    text-indent: 15px;
-    text-align: justify;
-}
-
 #footer {
-    position: absolute;
-    bottom: 5px;
+    margin-top: 150px;
     width: 720px;
     max-width: 720px;
-    text-align: right;
+    text-align: center;
 }

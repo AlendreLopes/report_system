@@ -4,49 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Protocolos */
-function returnMonth($month){
-    switch ($month) {
-        case '01':
-            echo "Janeiro";
-            break;
-        case '02':
-            echo "Fevereiro";
-            break;
-        case '03':
-            echo "Março";
-            break;
-        case '04':
-            echo "Abril";
-            break;
-        case '05':
-            echo "Maio";
-            break;
-        case '06':
-            echo "Junho";
-            break;
-        case '07':
-            echo "Junho";
-            break;
-        case '08':
-            echo "Agosto";
-            break;
-        case '09':
-            echo "Setembro";
-            break;
-        case '10':
-            echo "Outubro";
-            break;
-        case '11':
-            echo "Novembro";
-            break;
-        case '12':
-            echo "Dezembro";
-            break;
-        default:
-            # code...
-            break;
-    }
-}
 \yii\web\YiiAsset::register($this);
 //
 use agreements\models\Protocolos;
@@ -152,7 +109,7 @@ $protocolo = Protocolos::find()
             </table>
             <table id="footer" class="table table-striped">
                 <tr>
-                    <td class="text-center"><?= "Curitiba " . date('d') . " de " . returnMonth(date('m')) . " de "  . date('Y'); ?></td>
+                    <td class="text-center"><?= "Curitiba " . date('d') . " de " . Yii::$app->formatter->returnMonth(date('m')) . " de "  . date('Y'); ?></td>
                 </tr>
             </table>
         </section>

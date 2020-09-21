@@ -1,5 +1,5 @@
 <?php
-//$baseUrl = str_replace('/secretary/web', '', (new Request)->getBaseUrl());
+/* $baseUrl = str_replace(dirname(__DIR__), '', (new Request)->getBaseUrl()); */
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -46,17 +46,29 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'request' => [
+        /* 'request' => [
             'baseUrl' => $baseUrl,
-        ],
-        */
+        ], */
         'urlManager' => [
             //'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
+                '<controller:[\w-]+>' => '<controller>/index',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/update',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view-print',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/create-report',
             ],
+        ],
+        'formatter' => [
+            'class' => 'common\components\NewFormatter',
+            //'cache' => 'cache',
+            'dateFormat' => 'dd/MM/Y',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => '.',
+            'currencyCode' => 'pt-BR',
         ],
     ],
     'params' => $params,

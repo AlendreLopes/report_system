@@ -11,8 +11,34 @@ body {
 	Corpo da Página de Impressão
 */
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
-table {
-    margin-left: 5px;
+#header {
+    width: 720px;
+    max-width: 720px;
+    border: none;
+}
+.table-header-td{
+    font-weight:bold;
+}
+
+#body {
+    margin-top: 10px;
+    width: 720px;
+    max-width: 720px;
+}
+
+.table-body-th-title{
+    font-weight:bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.table-body-td-title{
+    font-weight:bold;
+}
+
+.table-body-td-result{
+    padding-left: 15px;
+    text-align: justify;
 }
 
 .textoM {
@@ -20,10 +46,9 @@ table {
     font-style: italic;
 }
 
-.ppagina {
+/* .ppagina {
     page-break-after: always;
 }
-
 .corpo {
     min-width: 900px;
     max-width: 900px;
@@ -33,35 +58,11 @@ table {
     border: 1px solid #ccc;
     background: #FFF;
 }
+ */
 
 .petImagem {
     float: right;
     margin-top: 150px;
-}
-
-.cabecalho {
-    min-width: 900px;
-    max-width: 900px;
-    min-height: 100px;
-    background: url(/public/image/petimagem_logo_c_850.jpg) top left no-repeat;
-}
-
-.conteudo {
-    min-width: 900px;
-    max-width: 900px;
-    min-height: 850px;
-    max-height: inherit;
-}
-
-.rodape {
-    min-width: 900px;
-    max-width: 900px;
-    min-height: 88px;
-    padding-top: 12px;
-    font-weight: bold;
-    text-align: center;
-    color: #FFF;
-    background: url(/public/image/petimagem_logo_r_850.jpg) top center no-repeat;
 }
 
 .codigo {

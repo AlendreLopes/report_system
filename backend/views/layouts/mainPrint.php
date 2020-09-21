@@ -26,9 +26,9 @@ PrintReportPdfAsset::register($this);
     <?php $this->head() ?>
     <!-- Set page size here: A5, A4 or A3 -->
     <!-- Set also "landscape" if you need -->
-    <!-- <style>@page { size: A4 }</style> -->
     <style>@page { size: A4 }</style>
-    <link type="text/css" rel="stylesheet" media="print" src="@app/web/css/print_report_pdf_print.css" />
+    <!-- <style>.warp { size: A4 }</style> -->
+    <!-- <link type="text/css" rel="stylesheet" media="print" src="@app/web/css/print_report_pdf_print.css" /> -->
 </head>
 <!-- Set "A5", "A4" or "A3" for class name -->
 <!-- Set also "landscape" if you need -->

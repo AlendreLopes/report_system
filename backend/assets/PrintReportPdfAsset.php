@@ -12,7 +12,6 @@ use yii\web\AssetBundle;
     {
         public $basePath = '@webroot';
         public $baseUrl  = '@web';
-
         public $css      = [
             'css/print_report_pdf.css'
         ];
