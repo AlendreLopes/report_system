@@ -33,6 +33,13 @@ use common\models\User;
  */
 class Convenios extends \yii\db\ActiveRecord
 {
+    const SCENARIO_DEFAULT = 'default';
+    const SCENARIO_EMAIL   = 'email';
+    const SCENARIO_UPDATE  = 'update';
+    public $emailConfirmar;
+    public $senhaConfirmar;
+    public $telefoneConfirmar;
+    public $celularConfirmar;
     /**
      * {@inheritdoc}
      */
@@ -47,22 +54,54 @@ class Convenios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'senha', 'password_hash', 'password_reset_token', 'status', 'auth_key', 'titulo'], 'required'],
+            [['titulo', 'username', 'email', 'emailConfirmar', 'senha', 'senhaConfirmar', 'celular', 'celularConfirmar'], 'required'],
+            [['data_cadastro'], 'safe'],
             [['status', 'created_by'], 'integer'],
             [['data_cadastro'], 'safe'],
+            // Proprietario => Username
+            ['username', 'string', 'max' => 255],
+            ['username', 'match',  'not' => true,
+                // we do not want to allow users to pick one of spam/bad usernames 
+                'pattern' => '/\b('.Yii::$app->params['user.spamNames'].')\b/i',
+                'message' => Yii::t('app', 'It\'s impossible to have that username.')],          
+            ['username', 'unique', 
+                'message' => Yii::t('app', 'This username has already been taken.')],
+            // Email
             [['email', 'password_hash', 'password_reset_token', 'account_activation_token', 'auth_key'], 'string', 'max' => 255],
-            [['senha'], 'string', 'max' => 20],
+            //
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'unique', 
+                'message' => Yii::t('app', 'This email address has already been taken.')],
+            [['email', 'emailConfirmar'], 'string', 'max' => 255, 'message' => 'Máximo de 150 caracteres'],
+            [['emailConfirmar'], 'compare', 'compareAttribute' => 'email', 'message' => 'E-mails diferentes'],
+            //
+            [['telefone', 'celular'], 'string', 'max' => 17],
+            [['telefone', 'telefoneConfirmar'], 'string', 'max' => 17, 'message' => 'Máximo de 17 caracteres'],
+            [['telefoneConfirmar'], 'compare', 'compareAttribute' => 'telefone', 'message' => 'Telefones diferentes'],
+            [['celular', 'celularConfirmar'], 'string', 'max' => 17, 'message' => 'Máximo de 17 caracteres'],
+            [['celularConfirmar'], 'compare', 'compareAttribute' => 'celular', 'message' => 'Celulars diferentes'],
+            //
+            [['senha', 'senhaConfirmar'], 'string', 'min' => 6, 'max' => 20, 'message' => 'Senha entre 6 à 20 caracteres'],
+            [['senhaConfirmar'], 'compare', 'compareAttribute' => 'telefone', 'message' => 'Telefones diferentes'],
             [['titulo', 'username', 'endereco', 'endereco_complemento', 'bairro', 'cidade'], 'string', 'max' => 150],
             [['telefone', 'celular'], 'string', 'max' => 17],
             [['cep'], 'string', 'max' => 15],
             [['endereco_numero'], 'string', 'max' => 50],
             [['uf'], 'string', 'max' => 2],
-            [['email'], 'unique'],
-            [['username'], 'unique'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
 
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_DEFAULT => ['titulo', 'username', 'email', 'emailConfirmar', 'senha'],
+            self::SCENARIO_EMAIL  => ['email', 'emailConfirmar', 'senha', 'senhaConfirmar'],
+            self::SCENARIO_UPDATE  => ['titulo', 'username', 'email', 'emailConfirmar'],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -77,14 +116,14 @@ class Convenios extends \yii\db\ActiveRecord
             'account_activation_token' => 'Account Activation Token',
             'status' => 'Status',
             'auth_key' => 'Auth Key',
-            'titulo' => 'Titulo',
-            'username' => 'Username',
+            'titulo' => 'Clínica/Consultório',
+            'username' => 'Proprietário',
             'telefone' => 'Telefone',
             'celular' => 'Celular',
             'cep' => 'Cep',
-            'endereco' => 'Endereco',
-            'endereco_numero' => 'Endereco Numero',
-            'endereco_complemento' => 'Endereco Complemento',
+            'endereco' => 'Endereço',
+            'endereco_numero' => 'Número',
+            'endereco_complemento' => 'Complemento',
             'bairro' => 'Bairro',
             'cidade' => 'Cidade',
             'uf' => 'Uf',
