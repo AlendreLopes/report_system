@@ -39,7 +39,12 @@ use yii\widgets\ActiveForm;
             $model->isNewRecord ? 'Cadastrar' : 'Atualizar',
             ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']
         ) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), ['protocolos/index'], ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Imprimir', 
+        ['/protocolos/view-print-reports', 'id' => $model->protocolos_id], 
+        [
+            'class' => 'btn btn-primary pull-right',
+            'target' => '_blank'
+        ]) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
