@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="protocolos-index">
     
     <h2>
-        Seja bem vindo:
+        Seja bem vindo(a):
         <br>
         <strong><?= Yii::$app->user->identity->username; ?></strong>
     </h2>
