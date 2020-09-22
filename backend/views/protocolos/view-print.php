@@ -1,5 +1,4 @@
 <?php
-
     use yii\helpers\Html;
     use yii\helpers\Url;
     use yii\widgets\DetailView;
@@ -33,7 +32,6 @@
     $this->params['breadcrumbs'][] = ['label' => 'Laudos', 'url' => ['/protocolos/index']];
     $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="protocolos-view">
 <?php
     $apCitopatologia = $protocolo['laudosApCitopatologia'];

@@ -33,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
         <?= Html::a('Imprimir', 
-        ['/protocolos/view-print', 'id' => $model->protocolos_id], 
+        ['/protocolos/view-print-reports', 'id' => $model->protocolos_id], 
         [
-            'class' => 'btn btn-primary',
-            'style' => 'float:right;'
+            'class' => 'btn btn-primary pull-right',
+            'target' => '_blank'
         ]) ?>
     </p>
 

@@ -6,16 +6,17 @@ body {
     font-size: 15px;
     margin: 5px;
 }
-
 /*
 	Corpo da Página de Impressão
 */
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 #header {
+    padding-top: 80px;
     width: 720px;
     max-width: 720px;
     border: none;
 }
+
 .table-header-td{
     font-weight:bold;
 }

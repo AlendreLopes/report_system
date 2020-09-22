@@ -16,6 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
         Seja bem vindo:
         <br>
         <strong><?= Yii::$app->user->identity->username; ?></strong>
+        <p class="pull-right">
+        <?= Html::a('Visualizar Dados', 
+            ['convenios/view', 'id' => Yii::$app->user->identity->id],
+            [ 'class' => 'btn btn-success', 'title' => 'Visualizar seus dados']); ?>
+        <?= Html::a('Atualizar Dados', 
+            ['convenios/update', 'id' => Yii::$app->user->identity->id],
+            [ 'class' => 'btn btn-info', 'title' => 'Atualizar os dados do Consultório/Clínica']); ?>
+        <?= Html::a('Alterar e-mail ou senha', 
+            ['convenios/update-pass', 'id' => Yii::$app->user->identity->id],
+            ['class' => 'btn btn-danger', 'title' => 'Alterar meu e-mail ou senha de acesso']); ?>
+    </p>
     </h2>
     
     <?php Pjax::begin(); ?>
