@@ -99,7 +99,7 @@ class ProtocolosController extends AppController
             'content' => $content,
             // format content from your own css file if needed or use the
             // enhanced bootstrap css built by Krajee for mPDF formatting 
-            'cssFile' => '@app/web/css/print_report_pdf_print.css',
+            'cssFile' => '@app/web/css/print_report_pdf.css',
             // any css to be embedded if required
             'cssInline' => 'body{font-size:10px}',
             // set mPDF properties on the fly
