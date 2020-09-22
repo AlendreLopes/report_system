@@ -107,7 +107,7 @@ class ProtocolosController extends AppController
                 'methods' => [
                     'SetTitle' => 'Pet Imagem',
                     'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
-                    'SetHeader' => ['Pet Imagem - Diagnóstico por Imagem'],
+                    'SetHeader' => ['Pet Imagem - Diagnósticos por Imagem'],
                     'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
                     'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
                     'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
