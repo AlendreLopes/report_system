@@ -101,7 +101,7 @@ class ProtocolosController extends AppController
             // enhanced bootstrap css built by Krajee for mPDF formatting 
             'cssFile' => '@app/web/css/print_report_pdf_print.css',
             // any css to be embedded if required
-            'cssInline' => '.kv-heading-1{font-size:18px}',
+            'cssInline' => 'body{font-size:10px}',
             // set mPDF properties on the fly
             'options' => ['title' => 'Laudos'],
             // call mPDF methods on the fly

@@ -99,14 +99,15 @@ class ProtocolosController extends AppController
                 // enhanced bootstrap css built by Krajee for mPDF formatting 
                 'cssFile' => '@app/web/css/print_reports_pdf_wimgs_print.css',
                 // any css to be embedded if required
-                'cssInline' => '.kv-heading-1{font-size:18px}',
+                //'defaultFontSize' => '10px',
+                'cssInline' => 'body{font-size:10px}',
                 // set mPDF properties on the fly
                 'options' => ['title' => 'Laudos'],
                 // call mPDF methods on the fly
                 'methods' => [
                     'SetTitle' => 'Pet Imagem',
                     'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
-                    //'SetHeader' => ['Pet Imagem - Diagnóstico por Imagem'],
+                    'SetHeader' => ['Pet Imagem - Diagnóstico por Imagem'],
                     'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
                     'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
                     'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
