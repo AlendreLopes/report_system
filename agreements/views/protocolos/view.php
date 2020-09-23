@@ -15,6 +15,7 @@ $protocolo = Protocolos::find()
     'laudosApCitopatologia',
     'laudosApCitopatologiaVaginal',
     'laudosApHistopatologia',
+    'laudosApNecropsia',
     'laudosDiEndoscopia',
     'laudosDiRaioX',
     'laudosDiRaioXContrastado',
@@ -39,7 +40,7 @@ if ($apCitopatologia) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -71,7 +72,7 @@ if ($apCitopatologia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Citopatologia</th>
         </tr>
@@ -99,6 +100,12 @@ if ($apCitopatologia) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apCitopatologia->concluido); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -109,7 +116,7 @@ if ($apCitopatologiaVaginal) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -141,7 +148,7 @@ if ($apCitopatologiaVaginal) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Citopatologia Vaginal</th>
         </tr>
@@ -220,6 +227,12 @@ if ($apCitopatologiaVaginal) {
         <tr>
             <td class="table-body-td-result"><?= $apCitopatologiaVaginal->concluido; ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -230,7 +243,7 @@ if ($apHistopatologia) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -262,7 +275,7 @@ if ($apHistopatologia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Histopatologia</th>
         </tr>
@@ -290,17 +303,23 @@ if ($apHistopatologia) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apHistopatologia->concluido); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_endoscopia = $protocolo['laudosDiEndoscopia'];
-if ($di_endoscopia) {
+$apNecropsia = $protocolo['laudosApNecropsia'];
+if ($apNecropsia) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -332,7 +351,83 @@ if ($di_endoscopia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
+        <tr>
+            <th class="table-body-th-title">Laudo de Necropsia</th>
+        </tr>
+        <tr>
+            <td class="table-body-td-title">Amostra</td>
+        </tr>
+        <tr>
+            <td class="table-body-td-result"><?= $apNecropsia->amostra; ?></td>
+        </tr>
+        <tr>
+            <td class="table-body-td-title">Exame</td>
+        </tr>
+        <tr>
+            <td class="table-body-td-result"><?= $apNecropsia->exame; ?></td>
+        </tr>
+        <tr>
+            <td class="table-body-td-title">Conclusão</td>
+        </tr>
+        <tr>
+            <td class="table-body-td-result"><?= $apNecropsia->conclusao; ?></td>
+        </tr>
+        <tr>
+            <td class="table-body-td-title">Data do laudo:</td>
+        </tr>
+        <tr>
+            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apNecropsia->concluido); ?></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
+    </table>
+</section>
+<?php
+}
+//
+$di_endoscopia = $protocolo['laudosDiEndoscopia'];
+if ($di_endoscopia) {
+    $readyToPrint = 1;
+?>
+<section class="sheet padding-5mm">
+    <table id="header" class="table table-responsive">
+        <tr>
+            <td class="table-header-td" width="15%">Protocolo:</td>
+            <td><?= $model->username; ?></td>
+            <td class="table-header-td" width="15%">Solicitado:</td>
+            <td><?= Yii::$app->formatter->asDate($model->data_cadastro); ?></td>
+        </tr>
+        <tr>
+            <td class="table-header-td" width="15%">Paciente:</td>
+            <td><?= $model->paciente; ?></td>
+            <td class="table-header-td" width="15%">Idade:</td>
+            <td><?= $model->idade; ?></td>
+        </tr>
+        <tr>
+            <td class="table-header-td" width="15%">Espécie:</td>
+            <td><?= $model->especie; ?></td>
+            <td class="table-header-td" width="15%">Sexo:</td>
+            <td><?= $model->genero; ?></td>
+        </tr>
+        <tr>
+            <td class="table-header-td" width="15%">Raça:</td>
+            <td><?= $model->especie_raca; ?></td>
+            <td class="table-header-td" width="15%">Tutor:</td>
+            <td><?= $model->proprietario; ?></td>
+        </tr>
+        <tr>
+            <td class="table-header-td" width="15%">Clínica:</td>
+            <td><?= $model->convenios->titulo; ?></td>
+            <td class="table-header-td" width="15%">Dr(a):</td>
+            <td><?= $model->requisitante; ?></td>
+        </tr>
+    </table>
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Endoscopia</th>
         </tr>
@@ -365,6 +460,13 @@ if ($di_endoscopia) {
         </tr>
         <tr>
             <td class="table-body-td-result"><?= $di_endoscopia->concluido; ?></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O Resultado do presente LAUDO não configura apresença ou ausência de doença 
+            devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
         </tr>
     </table>
 </section>
@@ -408,7 +510,7 @@ if ($di_raio_x) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Raio-x</th>
         </tr>
@@ -416,7 +518,7 @@ if ($di_raio_x) {
             <td class="table-body-td-title">Região:</td>
         </tr>
         <tr>
-            <td style="text-indent: 20px;text-align: justify;">
+            <td class="table-body-td-result">
                 <?= $di_raio_x['regiao']; ?></td>
         </tr>
         <tr>
@@ -451,6 +553,13 @@ if ($di_raio_x) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_raio_x['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+                com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -461,7 +570,7 @@ if ($di_raio_x_contrastado) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -493,7 +602,7 @@ if ($di_raio_x_contrastado) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Raio-x Contrastado</th>
         </tr>
@@ -501,7 +610,7 @@ if ($di_raio_x_contrastado) {
             <td class="table-body-td-title">Técnica:</td>
         </tr>
         <tr>
-            <td style="text-indent: 20px;text-align: justify;">
+            <td class="table-body-td-result">
                 <?= $di_raio_x_contrastado['tecnica']; ?></td>
         </tr>
         <tr>
@@ -528,6 +637,13 @@ if ($di_raio_x_contrastado) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_raio_x_contrastado['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -538,7 +654,7 @@ if ($di_us_aparelho_feminino) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -570,7 +686,7 @@ if ($di_us_aparelho_feminino) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Aparelho Feminino</th>
         </tr>
@@ -586,6 +702,12 @@ if ($di_us_aparelho_feminino) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_aparelho_feminino['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -596,7 +718,7 @@ if ($di_us_estrutura) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -628,7 +750,7 @@ if ($di_us_estrutura) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia de Estruturas</th>
         </tr>
@@ -636,7 +758,7 @@ if ($di_us_estrutura) {
             <td class="table-body-td-title">Local:</td>
         </tr>
         <tr>
-            <td style="text-indent: 20px;text-align: justify;">
+            <td class="table-body-td-result">
                 <?= $di_us_estrutura['local']; ?></td>
         </tr>
         <tr>
@@ -651,6 +773,13 @@ if ($di_us_estrutura) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_estrutura['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -661,7 +790,7 @@ if ($di_us_exploratoria) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -693,7 +822,7 @@ if ($di_us_exploratoria) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Exploratória</th>
         </tr>
@@ -709,6 +838,13 @@ if ($di_us_exploratoria) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_exploratoria['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -719,7 +855,7 @@ if ($di_us_gestacional) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -751,7 +887,7 @@ if ($di_us_gestacional) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Gestacional</th>
         </tr>
@@ -767,6 +903,13 @@ if ($di_us_gestacional) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_gestacional['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -777,7 +920,7 @@ if ($di_us_obstetrica) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -809,7 +952,7 @@ if ($di_us_obstetrica) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Obstétrica</th>
         </tr>
@@ -825,6 +968,13 @@ if ($di_us_obstetrica) {
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_obstetrica['concluido']); ?></td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
@@ -835,7 +985,7 @@ if ($di_us_pos_parto) {
     $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
-    <table id="header" class="table table-responsive table-striped">
+    <table id="header" class="table table-responsive">
         <tr>
             <td class="table-header-td" width="15%">Protocolo:</td>
             <td><?= $model->username; ?></td>
@@ -867,7 +1017,7 @@ if ($di_us_pos_parto) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive table-striped">
+    <table id="body" class="table table-responsive">
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Pós Parto</th>
         </tr>
@@ -882,6 +1032,14 @@ if ($di_us_pos_parto) {
         </tr>
         <tr>
             <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_pos_parto['concluido']); ?></td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser 
+            correlacionado com demais dados 
+            clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
         </tr>
     </table>
 </section>

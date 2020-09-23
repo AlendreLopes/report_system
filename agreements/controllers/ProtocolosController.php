@@ -79,45 +79,43 @@ class ProtocolosController extends AppController
      */
     public function actionPetImagemDiagnosticosVeterinarios($id)
     {
-        {
-            // get your HTML raw content without any layouts or scripts
-            $model   = $this->findModel($id);
-            $content = $this->renderPartial('view',['model'=> $model]);
-            // setup kartik\mpdf\Pdf component
-            $pdf = new Pdf([
-                // set to use core fonts only
-                'mode' => Pdf::MODE_UTF8,
-                // A4 paper format
-                'format' => Pdf::FORMAT_A4,
-                // portrait orientation
-                'orientation' => Pdf::ORIENT_PORTRAIT,
-                // stream to browser inline
-                'destination' => Pdf::DEST_BROWSER,
-                // your html content input
-                'content' => $content,
-                // format content from your own css file if needed or use the
-                // enhanced bootstrap css built by Krajee for mPDF formatting 
-                'cssFile' => '@app/web/css/print_reports_pdf_wimgs_print.css',
-                // any css to be embedded if required
+        // get your HTML raw content without any layouts or scripts
+        $model   = $this->findModel($id);
+        $content = $this->renderPartial('view',['model'=> $model]);
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_UTF8,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER,
+            // your html content input
+            'content' => $content,
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting 
+            'cssFile' => '@app/web/css/print_reports_pdf_wimgs_print.css',
+            //'cssFile' => '@app/web/css/print_reports_pdf_wimgs.css',
+            // any css to be embedded if required
+            'cssInline' => 'body{font-size:10px}',
+            // set mPDF properties on the fly
+            'options' => ['title' => 'Laudos'],
+            // call mPDF methods on the fly
+            'methods' => [
+                'SetTitle' => 'Pet Imagem',
+                'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
+                'SetHeader' => ['Pet Imagem - Diagnósticos por Imagem'],
+                'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
+                'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
+                'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
+                'SetFooter' => [ "Pet Imagem Diagnósticos por Imagem " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
                 //'defaultFontSize' => '10px',
-                //'cssInline' => 'body{font-size:10px}',
-                // set mPDF properties on the fly
-                'options' => ['title' => 'Laudos'],
-                // call mPDF methods on the fly
-                'methods' => [
-                    'SetTitle' => 'Pet Imagem',
-                    'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
-                    'SetHeader' => ['Pet Imagem - Diagnósticos por Imagem'],
-                    'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
-                    'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
-                    'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
-                    'SetFooter' => [ "Pet Imagem Diagnósticos por Imagem " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
-                    //'defaultFontSize' => '10px',
-                ],
-            ]);
-            // return the pdf output as per the destination setting
-            return $pdf->render();
-        }
+            ],
+        ]);
+        // return the pdf output as per the destination setting
+        return $pdf->render();
     }
 
     /**

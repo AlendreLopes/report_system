@@ -99,7 +99,7 @@ class ProtocolosController extends AppController
             'content' => $content,
             // format content from your own css file if needed or use the
             // enhanced bootstrap css built by Krajee for mPDF formatting 
-            'cssFile' => '@app/web/css/print_report_pdf.css',
+            'cssFile' => '@app/web/css/print_report_pdf_print.css',
             // any css to be embedded if required
             'cssInline' => 'body{font-size:10px}',
             // set mPDF properties on the fly
@@ -218,46 +218,5 @@ class ProtocolosController extends AppController
             return $model;
         }
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    public function returnMonth($month){
-        switch ($month) {
-            case '01':
-                echo "Curitiba " . date('d') . " de Janeiro de "  . date('Y');
-                break;
-            case '02':
-                echo "Curitiba " . date('d') . " de Fevereiro de "  . date('Y');
-                break;
-            case '03':
-                echo "Curitiba " . date('d') . " de Março de "  . date('Y');
-                break;
-            case '04':
-                echo "Curitiba " . date('d') . " de Abril de "  . date('Y');
-                break;
-            case '05':
-                echo "Curitiba " . date('d') . " de Maio de "  . date('Y');
-                break;
-            case '06':
-                echo "Curitiba " . date('d') . " de Junho de "  . date('Y');
-                break;
-            case '07':
-                echo "Curitiba " . date('d') . " de Junho de "  . date('Y');
-                break;
-            case '08':
-                echo "Curitiba " . date('d') . " de Agosto de "  . date('Y');
-                break;
-            case '09':
-                echo "Curitiba " . date('d') . " de Setembro de "  . date('Y');
-                break;
-            case '10':
-                echo "Curitiba " . date('d') . " de Outubro de "  . date('Y');
-                break;
-            case '11':
-                echo "Curitiba " . date('d') . " de Novembro de "  . date('Y');
-                break;
-            case '12':
-                echo "Curitiba " . date('d') . " de Dezembro de "  . date('Y');
-                break;
-        }
     }
 }

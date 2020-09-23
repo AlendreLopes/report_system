@@ -25,6 +25,7 @@ body {
     margin-top: 10px;
     width: 720px;
     max-width: 720px;
+    page-break-after: always;
 }
 
 .table-body-th-title{
@@ -40,6 +41,11 @@ body {
 .table-body-td-result{
     padding-left: 15px;
     text-align: justify;
+}
+
+.table-body-td-aviso{
+    text-align: justify;
+    font-weight:bold;
 }
 
 #footer {

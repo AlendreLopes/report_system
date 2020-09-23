@@ -11,20 +11,21 @@ body {
 */
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 #header {
-    padding-top: 100px;
+    padding-top: 20px;
     width: 720px;
     max-width: 720px;
     border: none;
-   background: url('../common/uploads/layout_print/petimagem_reader.jpg') top left no-repeat;
+   background: url('@uploads/layout_print/petimagem_reader.jpg') top left no-repeat;
 }
 .table-header-td{
     font-weight:bold;
 }
 
 #body {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 720px;
     max-width: 720px;
+    page-break-after: always;
 }
 
 .table-body-th-title{
@@ -40,12 +41,16 @@ body {
 .table-body-td-result{
     padding-left: 15px;
     text-align: justify;
+    line-height: 1.6;
 }
-
+.table-body-td-aviso{
+    text-align: justify;
+    font-weight:bold;
+}
 #footer {
     display: none;
     visibility: hidden;
-    background: url('../common/uploads/layout_print/petimagem_footer.jpg') top left no-repeat;
+    background: url('@uploads/layout_print/petimagem_footer.jpg') top left no-repeat;
 }
 
 .pet-imagem-brands {

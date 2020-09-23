@@ -212,8 +212,11 @@ body.legal.landscape .sheet {
 }
 
 .table-body-td-result{
+    padding-left: 15px;
+    line-height: 1.8;
     text-indent: 15px;
     text-align: justify;
+    line-height: 1.8;
 }
 
 #footer {

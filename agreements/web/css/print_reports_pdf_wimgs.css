@@ -83,6 +83,7 @@ body {
     position: relative;
     box-sizing: border-box;
     page-break-after: always;
+    background-color: black;
 }
 
 /** Paper sizes **/
@@ -175,8 +176,8 @@ body.legal.landscape .sheet {
         margin: 0.5cm;
     }
     body.A4 .sheet {
-        width: 205mm;
-        height: 291mm
+        width: 210mm;
+        height: 296mm
     }
     
     body.A4.landscape .sheet {
@@ -187,8 +188,11 @@ body.legal.landscape .sheet {
 }
 
 #header {
+    padding-top: 100px;
+    width: 720px;
+    max-width: 720px;
     border: none;
-    background: url("../common/uploads/layout_print/petimagem_reader.jpg") top left no-repeat;
+    /* background: url('@uploads/layout_print/petimagem_reader.jpg') top left no-repeat; */
 }
 .table-header-td{
     font-weight:bold;
@@ -196,6 +200,8 @@ body.legal.landscape .sheet {
 
 #body {
     margin-top: 15px;
+    width: 720px;
+    max-width: 720px;
 }
 
 .table-body-th-title{
@@ -203,19 +209,18 @@ body.legal.landscape .sheet {
     text-align: center;
     text-transform: uppercase;
 }
-
 .table-body-td-title{
     font-weight:bold;
 }
 
 .table-body-td-result{
-    text-indent: 15px;
+    padding-left: 15px;
     text-align: justify;
+    line-height: 1.6;
 }
 
 #footer {
-    position: absolute;
-    bottom: 5px;
-    text-align: right;
-    background: url("../common/uploads/layout_print/petimagem_footer.jpg") top left no-repeat;
+    display: none;
+    visibility: hidden;
+    /* background: url('@uploads/layout_print/petimagem_footer.jpg') top left no-repeat; */
 }
