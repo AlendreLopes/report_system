@@ -41,6 +41,7 @@ body {
 .table-body-td-result{
     padding-left: 15px;
     text-align: justify;
+    line-height: 1.6;
 }
 
 .table-body-td-aviso{

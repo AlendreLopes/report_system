@@ -80,19 +80,19 @@ if ($apCitopatologia) {
             <td class="table-body-td-title">Amostra</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologia->amostra; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologia->amostra); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Exame</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologia->exame; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologia->exame); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Conclusão</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologia->conclusao; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologia->conclusao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do laudo:</td>
@@ -156,7 +156,7 @@ if ($apCitopatologiaVaginal) {
             <td class="table-body-td-title">Amostra</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->amostra; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->amostra); ?></td>
         </tr>
         <?php
         if (!empty($apCitopatologiaVaginal->epiteliais_queratinizadas)) {
@@ -165,8 +165,7 @@ if ($apCitopatologiaVaginal) {
                 <td class="table-body-td-title">Células epiteliais queratinizadas</td>
             </tr>
             <tr>
-                <td class="table-body-td-result"><?= $apCitopatologiaVaginal->epiteliais_queratinizadas; ?>
-                </td>
+                <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->epiteliais_queratinizadas); ?></td>
             </tr>
             <?php
         }
@@ -178,8 +177,7 @@ if ($apCitopatologiaVaginal) {
                 <td class="table-body-td-title">Células epiteliais não queratinizadas</td>
             </tr>
             <tr>
-                <td class="table-body-td-result"><?= $apCitopatologiaVaginal->epiteliais_queratinizadas_n; ?>
-                </td>
+                <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->epiteliais_queratinizadas_n); ?></td>
             </tr>
             <?php
         }
@@ -188,29 +186,28 @@ if ($apCitopatologiaVaginal) {
             <td class="table-body-td-title">Eritrocitos</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->eritrocitos; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->eritrocitos); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Bacterias</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->bacterias; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->bacterias); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Leucocitos</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->leucocitos; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->leucocitos); ?></td>
         </tr>
         <?php
         if (!empty($apCitopatologiaVaginal->em_branco)) {
             ?>
             <tr>
-                <td class="table-body-td-title"><?= $apCitopatologiaVaginal->em_branco; ?></td>
+                <td class="table-body-td-title"><?= nl2br($apCitopatologiaVaginal->em_branco); ?></td>
             </tr>
             <tr>
-                <td class="table-body-td-result"><?= $apCitopatologiaVaginal->em_branco_; ?>
-                </td>
+                <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->em_branco_); ?></td>
             </tr>
             <?php
         }
@@ -219,13 +216,13 @@ if ($apCitopatologiaVaginal) {
             <td class="table-body-td-title">Diagnóstico</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->diagnostico; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->diagnostico); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apCitopatologiaVaginal->concluido; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->concluido); ?></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
@@ -283,19 +280,19 @@ if ($apHistopatologia) {
             <td class="table-body-td-title">Amostra</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apHistopatologia->amostra; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apHistopatologia->amostra); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Exame</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apHistopatologia->exame; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apHistopatologia->exame); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Conclusão</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apHistopatologia->conclusao; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apHistopatologia->conclusao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do laudo:</td>
@@ -359,19 +356,19 @@ if ($apNecropsia) {
             <td class="table-body-td-title">Amostra</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apNecropsia->amostra; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apNecropsia->amostra); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Exame</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apNecropsia->exame; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apNecropsia->exame); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Conclusão</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $apNecropsia->conclusao; ?></td>
+            <td class="table-body-td-result"><?= nl2br($apNecropsia->conclusao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do laudo:</td>
@@ -435,31 +432,31 @@ if ($di_endoscopia) {
             <td class="table-body-td-title">Local</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_endoscopia->local; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_endoscopia->local); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Comentário</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_endoscopia->comentario; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_endoscopia->comentario); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Interpretação</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_endoscopia->interpretacao; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_endoscopia->interpretacao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Conclusão</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_endoscopia->conclusao; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_endoscopia->conclusao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_endoscopia->concluido; ?></td>
+            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_endoscopia->concluido); ?></td>
         </tr>
         <tr><td>&nbsp;</td></tr>
         <tr>
@@ -518,32 +515,31 @@ if ($di_raio_x) {
             <td class="table-body-td-title">Região:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result">
-                <?= $di_raio_x['regiao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_raio_x->regiao); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_raio_x['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_raio_x->descricao); ?></td>
         </tr>
         <?php
-        if (!empty($di_raio_x['interpretacao'])) {
+        if (!empty($di_raio_x->interpretacao)) {
         ?>
             <tr><td class="table-body-td-title">Interpretação:</td>
             </tr>
             <tr>
-                <td class="table-body-td-result"><?= $di_raio_x['interpretacao']; ?></td>
+                <td class="table-body-td-result"><?= nl2br($di_raio_x->interpretacao); ?></td>
             </tr>
         <?php
         }
-        if (!empty($di_raio_x['observacao'])) {
+        if (!empty($di_raio_x->observacao)) {
         ?>
             <tr>
                 <td class="table-body-td-title">Observação:</td>
             </tr>
             <tr>
-                <td class="table-body-td-result"><?= $di_raio_x['observacao']; ?></td>
+                <td class="table-body-td-result"><?= nl2br($di_raio_x->observacao); ?></td>
             </tr>
         <?php
         } ?>
@@ -610,26 +606,25 @@ if ($di_raio_x_contrastado) {
             <td class="table-body-td-title">Técnica:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result">
-                <?= $di_raio_x_contrastado['tecnica']; ?></td>
+        <td class="table-body-td-result"><?= nl2br($di_raio_x_contrastado['tecnica']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_raio_x_contrastado['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_raio_x_contrastado['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Interpretação:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_raio_x_contrastado['interpretacao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_raio_x_contrastado['interpretacao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Observação:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_raio_x_contrastado['observacao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_raio_x_contrastado['observacao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -694,7 +689,7 @@ if ($di_us_aparelho_feminino) {
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_aparelho_feminino['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_aparelho_feminino['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -758,14 +753,13 @@ if ($di_us_estrutura) {
             <td class="table-body-td-title">Local:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result">
-                <?= $di_us_estrutura['local']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_estrutura['local']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_estrutura['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_estrutura['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -830,7 +824,7 @@ if ($di_us_exploratoria) {
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_exploratoria['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_exploratoria['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -895,7 +889,7 @@ if ($di_us_gestacional) {
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_gestacional['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_gestacional['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -960,7 +954,7 @@ if ($di_us_obstetrica) {
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_obstetrica['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_obstetrica['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
@@ -1025,7 +1019,7 @@ if ($di_us_pos_parto) {
             <td class="table-body-td-title">Descrição:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= $di_us_pos_parto['descricao']; ?></td>
+            <td class="table-body-td-result"><?= nl2br($di_us_pos_parto['descricao']); ?></td>
         </tr>
         <tr>
             <td class="table-body-td-title">Data do Laudo:</td>

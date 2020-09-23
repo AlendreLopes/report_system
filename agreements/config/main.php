@@ -57,9 +57,9 @@ return [
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/update',
                 '<controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
                 '<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view-print',
-                '<controller:[\w-]+>/<id:\d+>' => '<controller>/update-pass',
                 '<controller:[\w-]+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
+                /* '<controller:[\w-]+>/<id:\d+>' => '<controller>/view-print', */
+                /* '<controller:[\w-]+>/<id:\d+>' => '<controller>/update-pass', */
             ],
         ],
         'formatter' => [

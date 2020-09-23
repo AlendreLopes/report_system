@@ -10,6 +10,8 @@ use yii\data\Pagination;
 
 use yii\i18n\Formatter;
 use kartik\mpdf\Pdf;
+// New class to print in Pdf
+use common\helpers\fpdf\FPdf;
 /**
  * ProtocolosController implements the CRUD actions for Protocolos model.
  */
@@ -77,6 +79,29 @@ class ProtocolosController extends AppController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
+    //public function actionViewPrint($id)
+    public function actionViewPrint()
+    {
+        // Testando a classe
+    }
+
+    /**
+     * Displays a single Protocolos model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate()
+    {
+        return $this->render('index');
+    }
+
+    /**
+     * Displays a single Protocolos model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionPetImagemDiagnosticosVeterinarios($id)
     {
         // get your HTML raw content without any layouts or scripts
@@ -116,6 +141,17 @@ class ProtocolosController extends AppController
         ]);
         // return the pdf output as per the destination setting
         return $pdf->render();
+    }
+
+    /**
+     * Displays a single Protocolos model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete()
+    {
+        return $this->render('index');
     }
 
     /**
