@@ -3,20 +3,51 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
 /* @var $searchModel agreements\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Protocolos';
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="protocolos-index">
-    
     <h2>
         Seja bem vindo(a):
         <br>
         <strong><?= Yii::$app->user->identity->username; ?></strong>
+        <p class="pull-right">
+            <?= Html::a('Visualizar Dados', 
+                [
+                    'convenios/view', 
+                    'id' => Yii::$app->user->id
+                ],
+                [ 
+                    'class' => 'btn btn-success', 
+                    'title' => 'Visualizar seus dados'
+                ]); ?>
+            <?= Html::a('Alterar e-mail ou senha', 
+                [
+                    'convenios/update-pass', 
+                    'id' => Yii::$app->user->id
+                ],
+                [
+                    'class' => 'btn btn-danger', 
+                    'title' => 'Alterar meu e-mail ou senha de acesso', 
+                    'data-toggle' => 'modal',
+                    'data-target' => '#agreementUpdatePass',
+                ]); ?>
+        </p>
     </h2>
+    <!-- Modal -->
+    <div class="modal fade" id="agreementUpdatePass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
     
     <?php Pjax::begin(); ?>
 

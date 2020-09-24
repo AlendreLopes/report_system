@@ -8,6 +8,7 @@ use agreements\models\ConveniosSearch;
 use agreements\controllers\AppController;
 use yii\web\NotFoundHttpException;
 
+use yii\widgets\ActiveForm;
 /**
  * ConveniosController implements the CRUD actions for Convenios model.
  */
@@ -19,13 +20,7 @@ class ConveniosController extends AppController
      */
     public function actionIndex()
     {
-        $searchModel = new ConveniosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->redirect(['/protocolos/index']);
     }
 
     /**
@@ -50,14 +45,20 @@ class ConveniosController extends AppController
      */
     public function actionUpdate($id)
     {
+        $agreementId = Yii::$app->user->id;
         $model = $this->findModel($id);
-        if(Yii::$app->request->isAjax){
-
+        if($model->id != $agreementId){
+            Yii::$app->session->setFlash('error', 'Você não tem permissão para acessar esta ação.');
+            return $this->redirect(['/protocolos/index']);
+        }
+        $model->scenario = "update";
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = 'json';
+            return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         return $this->renderAjax('update', [
             'model' => $model,
         ]);
@@ -72,13 +73,24 @@ class ConveniosController extends AppController
      */
     public function actionUpdatePass($id)
     {
+        $agreementId = Yii::$app->user->id;
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($model->id != $agreementId){
+            Yii::$app->session->setFlash('error', 'Você não tem permissão para acessar esta ação.');
+            return $this->redirect(['/protocolos/index']);
         }
-
-        return $this->render('update-pass', [
+        $model->scenario = "email";
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = 'json';
+            return ActiveForm::validate($model);
+        }
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password_hash = Yii::$app->security->generatePasswordHash($model->senha);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
+        return $this->renderAjax('update-pass', [
             'model' => $model,
         ]);
     }
@@ -95,7 +107,6 @@ class ConveniosController extends AppController
         if (($model = Convenios::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

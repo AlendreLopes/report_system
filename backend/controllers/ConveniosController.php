@@ -51,7 +51,7 @@ class ConveniosController extends AppController
         $model = new Convenios();
         $model->scenario = 'create';
         if ($model->load(Yii::$app->request->post())){
-            $model->password_hash = Yii::$app->security->generatePasswordHash($model->senha); 
+            $model->password_hash = Yii::$app->security->generatePasswordHash($model->senha);
             $model->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
             $model->status = 10;
             $model->auth_key = Yii::$app->security->generateRandomString();
@@ -76,6 +76,7 @@ class ConveniosController extends AppController
         $model = $this->findModel($id);
         $model->scenario = 'update';
         if ($model->load(Yii::$app->request->post())){
+            $model->password_hash = Yii::$app->security->generatePasswordHash($model->senha);
             if($model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

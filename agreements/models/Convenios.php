@@ -54,7 +54,7 @@ class Convenios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titulo', 'username', 'email', 'emailConfirmar', 'senha', 'senhaConfirmar', 'celular', 'celularConfirmar'], 'required'],
+            [['titulo', 'username', 'email', 'emailConfirmar', 'senha', 'senhaConfirmar', 'celular', 'celularConfirmar', 'telefone', 'telefoneConfirmar', 'cep', 'endereco', 'endereco_numero', 'endereco_complemento', 'bairro', 'cidade', 'uf'], 'required'],
             [['data_cadastro'], 'safe'],
             [['status', 'created_by'], 'integer'],
             [['data_cadastro'], 'safe'],
@@ -84,7 +84,7 @@ class Convenios extends \yii\db\ActiveRecord
             [['celularConfirmar'], 'compare', 'compareAttribute' => 'celular', 'message' => 'Celulars diferentes'],
             //
             [['senha', 'senhaConfirmar'], 'string', 'min' => 6, 'max' => 20, 'message' => 'Senha entre 6 à 20 caracteres'],
-            [['senhaConfirmar'], 'compare', 'compareAttribute' => 'telefone', 'message' => 'Telefones diferentes'],
+            [['senhaConfirmar'], 'compare', 'compareAttribute' => 'senha', 'message' => 'As senhas são diferentes'],
             [['titulo', 'username', 'endereco', 'endereco_complemento', 'bairro', 'cidade'], 'string', 'max' => 150],
             [['telefone', 'celular'], 'string', 'max' => 17],
             [['cep'], 'string', 'max' => 15],
@@ -97,9 +97,9 @@ class Convenios extends \yii\db\ActiveRecord
     public function scenarios()
     {
         return [
-            self::SCENARIO_DEFAULT => ['titulo', 'username', 'email', 'emailConfirmar', 'senha'],
+            self::SCENARIO_DEFAULT => ['titulo', 'username', 'email', 'emailConfirmar', 'senha', 'senhaConfirmar', 'celular', 'celularConfirmar', 'telefone', 'telefoneConfirmar', 'cep', 'endereco', 'endereco_numero', 'endereco_complemento', 'bairro', 'cidade', 'uf'],
             self::SCENARIO_EMAIL  => ['email', 'emailConfirmar', 'senha', 'senhaConfirmar'],
-            self::SCENARIO_UPDATE  => ['titulo', 'username', 'email', 'emailConfirmar'],
+            self::SCENARIO_UPDATE  => ['titulo', 'username', 'celular', 'celularConfirmar', 'cep', 'endereco', 'endereco_numero', 'bairro', 'cidade', 'uf'],
         ];
     }
     /**

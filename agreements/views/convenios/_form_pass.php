@@ -11,9 +11,6 @@ use yii\widgets\ActiveForm;
 <div class="convenios-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    <?php
-    if ($model->scenario == "email") {
-        ?>
         <div class="row">
             <div class="col-sm-3">
                 <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
@@ -34,13 +31,12 @@ use yii\widgets\ActiveForm;
                 ]) ?>
             </div>
         </div>
-        <?php
-    }
-    ?>
-    <div class="form-group">
-        echo Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <div class="form-group">
+        <?= Html::submitButton(
+            $model->isNewRecord ? Yii::t('app', 'Cadastrar') : Yii::t('app', 'Atualizar'),
+            ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']
+        ) ?>
+        <?= Html::a(Yii::t('app', 'Cancelar'), ['/protocolos/index'], ['class' => 'btn btn-default']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

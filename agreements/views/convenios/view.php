@@ -9,35 +9,22 @@ use yii\widgets\DetailView;
 /* @var $model agreements\models\Convenios */
 
 $this->title = "Clínica/Consultório: " . $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Convenios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="convenios-view">
-    
+<div class="convenios-view">    
     <!-- Button trigger modal -->
-    <button type="button" href="update?id=<?= $model->id; ?>" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <button type="button" href="update?id=<?= $model->id; ?>" class="btn btn-primary" data-toggle="modal" data-target="#agreementUpdate">
         Atualizar dados
     </button>
-
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="agreementUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                </div>
+                <div class="modal-body"></div>
             </div>
         </div>
     </div>
-    
     <div class="row">
         <div class="col-sm-2"><strong>Clínica/Consultório</strong></div>
         <div class="col-sm-4"><?= $model->titulo;?></div>

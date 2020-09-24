@@ -5,12 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model agreements\models\Convenios */
 
-$this->title = 'Update Convenios: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Convenios', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Atualizar dados';
+$this->params['breadcrumbs'][] = ['label' => $model->titulo, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Atualizando';
 ?>
-<div class="convenios-update">
+<div class="contanier-fluid">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

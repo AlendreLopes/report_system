@@ -40,7 +40,7 @@ AppAsset::register($this);
     } else {
         $menuItems = [
             ['label' => 'Página inicial', 'url' => ['/protocolos/index']],
-            ['label' => 'Sobre', 'url' => ['/site/about']],
+            //['label' => 'Sobre', 'url' => ['/site/about']],
             ['label' => 'Contato', 'url' => ['/site/contact']],
         ];    
         $menuItems[] = '<li>'
