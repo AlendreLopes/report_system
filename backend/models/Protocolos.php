@@ -107,7 +107,7 @@ class Protocolos extends \yii\db\ActiveRecord
         return [
             self::SCENARIO_CREATE => ['numero','protocolo', 'motedepass', 'convenio_id', 'requisitante', 'proprietario', 'paciente', 'especie', 'especie_raca', 'genero', 'idade'],
             self::SCENARIO_UPDATE => ['convenio_id', 'requisitante', 'proprietario', 'paciente', 'especie', 'especie_raca', 'genero', 'idade'],
-            self::SCENARIO_UPDATE => ['password_hash', 'status', 'auth_key', 'password_reset_token'],
+            self::SCENARIO_PASSHA => ['password_hash', 'status', 'auth_key', 'password_reset_token'],
         ];
     }
     /**
