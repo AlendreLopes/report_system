@@ -45,11 +45,28 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        /* 'request' => [
+            'baseUrl' => $baseUrl,
+        ], */
         'urlManager' => [
+            //'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/view',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/update',
+                '<controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
+                '<controller:[\w-]+>/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:[\w-]+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
             ],
+        ],
+        'formatter' => [
+            'class' => 'common\components\NewFormatter',
+            //'cache' => 'cache',
+            'dateFormat' => 'dd/MM/Y',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => '.',
+            'currencyCode' => 'pt-BR',
         ],
     ],
     'params' => $params,
