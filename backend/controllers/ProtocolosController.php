@@ -23,6 +23,7 @@ class ProtocolosController extends AppController
      */
     public function actionIndex()
     {
+        /*
         \set_time_limit(360);
         $numero = 0;
         $query = (new \yii\db\Query())
@@ -43,6 +44,7 @@ class ProtocolosController extends AppController
         }
         echo "Contador: ".$numero;
         die();
+        */
         $cookies = Yii::$app->request->cookies;
         if (isset($cookies['protocolos_id'])) {
             $cookies = Yii::$app->response->cookies;
