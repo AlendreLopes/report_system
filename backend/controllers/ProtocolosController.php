@@ -23,6 +23,25 @@ class ProtocolosController extends AppController
      */
     public function actionIndex()
     {
+        \set_time_limit(360);
+        $numero = 0;
+        $query = (new \yii\db\Query())
+        ->from('protocolos')
+        ->select(['id','motedepass'])
+        ->where(['<','id','61790'])        
+        ->orderBy(['id' => SORT_DESC,])
+        ->indexBy('id');
+        foreach ($query->each() as $key) {
+            $protocolo = Protocolos::findOne($key['id']);
+            $protocolo->password_hash = Yii::$app->security->generatePasswordHash($key['motedepass']); 
+            $protocolo->status = 10;
+            $protocolo->auth_key = Yii::$app->security->generateRandomString();
+            $protocolo->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+            $protocolo->save();
+            $numero ++;
+        }
+        echo "Contador: ".$numero;
+        die();
         $cookies = Yii::$app->request->cookies;
         if (isset($cookies['protocolos_id'])) {
             $cookies = Yii::$app->response->cookies;
