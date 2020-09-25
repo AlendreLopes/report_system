@@ -35,7 +35,7 @@ use Yii;
                     [
                         'roles' => ['@'],
                         'allow' => true,
-                        'actions' => ['index','view','view-search','view-print','view-print-reports','about','contact','logout'],
+                        'actions' => ['index','view','pet-imagem-diagnosticos-veterinarios','contact','logout'],
                     ],
                     [
                         'roles' => ['secretary'],

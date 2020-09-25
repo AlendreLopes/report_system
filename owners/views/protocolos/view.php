@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Protocolos */
 \yii\web\YiiAsset::register($this);
 //
-use agreements\models\Protocolos;
+use owners\models\Protocolos;
 //
 $protocolo = Protocolos::find()
 ->where(['id' => $model->id])

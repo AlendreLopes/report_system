@@ -92,16 +92,28 @@ if ($apCitopatologia) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($apCitopatologia->conclusao); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apCitopatologia->concluido); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($apCitopatologia->concluido); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
                 &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -216,16 +228,28 @@ if ($apCitopatologiaVaginal) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->diagnostico); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= nl2br($apCitopatologiaVaginal->concluido); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= $apCitopatologiaVaginal->concluido; ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
                 &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -292,16 +316,28 @@ if ($apHistopatologia) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($apHistopatologia->conclusao); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apHistopatologia->concluido); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($apHistopatologia->concluido); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
                 &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -368,16 +404,28 @@ if ($apNecropsia) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($apNecropsia->conclusao); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($apNecropsia->concluido); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($apNecropsia->concluido); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
                 &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -450,17 +498,29 @@ if ($di_endoscopia) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_endoscopia->conclusao); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_endoscopia->concluido); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_endoscopia->concluido); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O Resultado do presente LAUDO não configura apresença ou ausência de doença 
             devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -541,17 +601,29 @@ if ($di_raio_x) {
             </tr>
         <?php
         } ?>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_raio_x['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_raio_x['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
                 &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
                 com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -624,17 +696,29 @@ if ($di_raio_x_contrastado) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_raio_x_contrastado['observacao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_raio_x_contrastado['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_raio_x_contrastado['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
             com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -689,16 +773,28 @@ if ($di_us_aparelho_feminino) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_aparelho_feminino['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_aparelho_feminino['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_aparelho_feminino['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -759,17 +855,29 @@ if ($di_us_estrutura) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_estrutura['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_estrutura['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_estrutura['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
             com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -824,17 +932,29 @@ if ($di_us_exploratoria) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_exploratoria['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_exploratoria['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_exploratoria['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
             com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -889,17 +1009,29 @@ if ($di_us_gestacional) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_gestacional['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_gestacional['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_gestacional['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
             com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -954,17 +1086,29 @@ if ($di_us_obstetrica) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_obstetrica['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_obstetrica['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_obstetrica['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
             &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
             com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
             </td>
         </tr>
     </table>
@@ -1019,12 +1163,12 @@ if ($di_us_pos_parto) {
         <tr>
             <td class="table-body-td-result"><?= nl2br($di_us_pos_parto['descricao']); ?></td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td class="table-body-td-title">Data do Laudo:</td>
         </tr>
         <tr>
-            <td class="table-body-td-result"><?= Yii::$app->formatter->asDate($di_us_pos_parto['concluido']); ?></td>
-        </tr>
+            <td class="table-body-td-result"><?php //= Yii::$app->formatter->asDate($di_us_pos_parto['concluido']); ?></td>
+        </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
             <td class="table-body-td-aviso">
@@ -1033,7 +1177,19 @@ if ($di_us_pos_parto) {
             clínicos e exames complementares pertinentes ao caso.&rdquo;
             </td>
         </tr>
-    </table>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-signature pull-right">
+                <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
+                [
+                    'class' => 'img-responsive',
+                    'alt'   => 'Dr(a) Danielle Tullio Murad',
+                    'width' => '150',
+                    'height' => '120',
+                ]); ?>
+            </td>
+        </tr>
+</table>
 </section>
 <?php
 }

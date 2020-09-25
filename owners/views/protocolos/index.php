@@ -3,36 +3,29 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 use yii\widgets\LinkPager;
+
 /* @var $this yii\web\View */
-/* @var $searchModel agreements\models\ProtocolosSearch */
+/* @var $searchModel owners\models\ProtocolosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Protocolos';
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
 ?>
 <div class="protocolos-index">
-    
-    <h2>
-        Seja bem vindo:
-        <br>
-        <strong><?= Yii::$app->user->identity->username; ?></strong>
-        <p class="pull-right">
-        <?= Html::a('Visualizar Dados', 
-            ['convenios/view', 'id' => Yii::$app->user->identity->id],
-            [ 'class' => 'btn btn-success', 'title' => 'Visualizar seus dados']); ?>
-        <?= Html::a('Atualizar Dados', 
-            ['convenios/update', 'id' => Yii::$app->user->identity->id],
-            [ 'class' => 'btn btn-info', 'title' => 'Atualizar os dados do Consultório/Clínica']); ?>
-        <?= Html::a('Alterar e-mail ou senha', 
-            ['convenios/update-pass', 'id' => Yii::$app->user->identity->id],
-            ['class' => 'btn btn-danger', 'title' => 'Alterar meu e-mail ou senha de acesso']); ?>
-    </p>
-    </h2>
+    <h2>Seja bem vindo, proprietário(a)!</h2>
+    <h3>Laudo(s) referente ao Protocolo: <strong><?= Yii::$app->user->identity->username; ?></strong></h3>
+    <!-- Modal -->
+    <div class="modal fade" id="agreementUpdatePass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
     
     <?php Pjax::begin(); ?>
 
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
-    
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <tr>

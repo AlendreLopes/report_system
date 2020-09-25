@@ -45,7 +45,7 @@ class ProtocolosSearch extends Protocolos
         ->select([
             'protocolos.id','protocolos.convenio_id','protocolos.username',
             'protocolos.requisitante','protocolos.paciente','protocolos.idade',
-            'protocolos.especie','protocolos.especie_raca','protocolos.data_cadastro'
+            'protocolos.especie','protocolos.especie_raca','protocolos.data_cadastro','protocolos.password_hash'
         ])
         ->orderBy(['protocolos.id' => SORT_DESC]);
 

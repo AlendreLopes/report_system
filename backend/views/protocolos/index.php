@@ -35,8 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'requisitante',
             'paciente',
-            'especie',
-            'especie_raca',
+            //'especie',
+            //'especie_raca',
+            'password_hash',
         ],
     ]); ?>
     <?php Pjax::end(); ?>

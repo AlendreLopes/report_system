@@ -48,7 +48,14 @@ body {
     text-align: justify;
     font-weight:bold;
 }
-
+.table-body-td-signature{
+    float: right !important;
+}
+.img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 #footer {
     display: none;
     visibility: hidden;

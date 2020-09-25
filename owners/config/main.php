@@ -11,7 +11,7 @@ return [
     'name'        => '[ Sistema de Proprietários ]',
     'language'    => 'pt_BR',
     'layout'      => 'main',
-    //'defaultRoute'=> 'owners',
+    'defaultRoute'=> 'protocolos',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'owners\controllers',
