@@ -33,6 +33,7 @@ class ProtocolosController extends AppController
         ->indexBy('id');
         foreach ($query->each() as $key) {
             $protocolo = Protocolos::findOne($key['id']);
+            $protocolo->scenario = 'passha';
             $protocolo->password_hash = Yii::$app->security->generatePasswordHash($key['motedepass']); 
             $protocolo->status = 10;
             $protocolo->auth_key = Yii::$app->security->generateRandomString();
