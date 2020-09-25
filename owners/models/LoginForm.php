@@ -9,17 +9,12 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    //00065139-20
-    //jfme_Y56
     public $username;
     public $email;
     public $password;
     public $rememberMe = true;
     public $status; // holds the information about user status
-
     private $_user;
-
-
     /**
      * {@inheritdoc}
      */
