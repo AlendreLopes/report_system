@@ -38,15 +38,15 @@ AppAsset::register($this);
                 'class' => 'navbar navbar-inverse navbar-fixed-top',
             ],
         ]);
+        $menuItems[] = '<li>
+        <form id="w0" action="/index.php/protocolos/view-search" method="get" data-pjax="1" style="padding-top:2px;">
+        <div class="form-group field-protocolossearch-username">
+            <input type="text" id="protocolossearch-username" class="form-control" name="ProtocolosSearch[username]" placeholder="Pesquisar Protocolo">
+        </div>
+        </form>
+        </li>';
         // display Users to admin+ roles
         if (Yii::$app->user->can('admin')) {
-            $menuItems[] = '<li>
-            <form id="w0" action="/index.php/protocolos/view-search" method="get" data-pjax="1" style="padding-top:2px;">
-            <div class="form-group field-protocolossearch-username">
-                <input type="text" id="protocolossearch-username" class="form-control" name="ProtocolosSearch[username]" placeholder="Pesquisar Protocolo">
-            </div>
-            </form>
-            </li>';
             $menuItems [] = [
                 'label' => Yii::t('app', 'Convenios'), 'url' => ['/convenios/index'],
             ];    

@@ -11,7 +11,7 @@ use yii\data\Pagination;
 use yii\i18n\Formatter;
 use kartik\mpdf\Pdf;
 // New class to print in Pdf
-use common\helpers\fpdf\FPdf;
+use common\components\PrintPdf;
 /**
  * ProtocolosController implements the CRUD actions for Protocolos model.
  */
@@ -42,7 +42,6 @@ class ProtocolosController extends AppController
             'searchModel' => $searchModel,
         ]);
     }
-
     /**
      * Displays a single Protocolos model.
      * @param integer $id
@@ -56,7 +55,6 @@ class ProtocolosController extends AppController
             'model' => $this->findModel($id),
         ]);
     }
-
     /**
      * Displays a single Protocolos model.
      * @param integer $id
@@ -72,7 +70,6 @@ class ProtocolosController extends AppController
             'dataProvider' => $dataProvider,
         ]);
     }
-
     /**
      * Displays a single Protocolos model.
      * @param integer $id
@@ -83,8 +80,10 @@ class ProtocolosController extends AppController
     public function actionViewPrint()
     {
         // Testando a classe
+        //$model = new PrintPdf();
+        //return $this->render('view-print',['model'=>$model]);
+        return $this->redirect('index');
     }
-
     /**
      * Displays a single Protocolos model.
      * @param integer $id
@@ -95,7 +94,6 @@ class ProtocolosController extends AppController
     {
         return $this->render('index');
     }
-
     /**
      * Displays a single Protocolos model.
      * @param integer $id

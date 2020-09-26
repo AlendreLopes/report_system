@@ -1,5 +1,6 @@
 <?php
-namespace common\helpers;
+namespace common\components\fpdf;
+use yii\base\BaseObject;
 /*******************************************************************************
 * FPDF                                                                         *
 *                                                                              *
@@ -8,7 +9,7 @@ namespace common\helpers;
 * Author:  Olivier PLATHEY                                                     *
 *******************************************************************************/
 define('FPDF_VERSION','1.82');
-class FPdfHelpers {
+class FPdf extends BaseObject {
 	protected $page;               // current page number
 	protected $n;                  // current object number
 	protected $offsets;            // array of object offsets
@@ -69,7 +70,7 @@ class FPdfHelpers {
 	*                               Public methods                                 *
 	*******************************************************************************/
 
-	function __construct($orientation='P', $unit='mm', $size='A4')
+	public function __construct($orientation='P', $unit='mm', $size='A4', $config=[])
 	{
 		// Some checks
 		$this->_dochecks();
@@ -165,9 +166,16 @@ class FPdfHelpers {
 		$this->SetCompression(true);
 		// Set default PDF version number
 		$this->PDFVersion = '1.3';
+		parent::__construct($config);
+	}
+	// 
+	public function init()
+	{
+		parent::init();
+		// ... initialization after configuration is applied
 	}
 
-	function SetMargins($left, $top, $right=null)
+	public function SetMargins($left, $top, $right=null)
 	{
 		// Set left, top and right margins
 		$this->lMargin = $left;
@@ -177,7 +185,7 @@ class FPdfHelpers {
 		$this->rMargin = $right;
 	}
 
-	function SetLeftMargin($margin)
+	public function SetLeftMargin($margin)
 	{
 		// Set left margin
 		$this->lMargin = $margin;
@@ -185,19 +193,19 @@ class FPdfHelpers {
 			$this->x = $margin;
 	}
 
-	function SetTopMargin($margin)
+	public function SetTopMargin($margin)
 	{
 		// Set top margin
 		$this->tMargin = $margin;
 	}
 
-	function SetRightMargin($margin)
+	public function SetRightMargin($margin)
 	{
 		// Set right margin
 		$this->rMargin = $margin;
 	}
 
-	function SetAutoPageBreak($auto, $margin=0)
+	public function SetAutoPageBreak($auto, $margin=0)
 	{
 		// Set auto page break mode and triggering margin
 		$this->AutoPageBreak = $auto;
@@ -205,7 +213,7 @@ class FPdfHelpers {
 		$this->PageBreakTrigger = $this->h-$margin;
 	}
 
-	function SetDisplayMode($zoom, $layout='default')
+	public function SetDisplayMode($zoom, $layout='default')
 	{
 		// Set display mode in viewer
 		if($zoom=='fullpage' || $zoom=='fullwidth' || $zoom=='real' || $zoom=='default' || !is_string($zoom))
@@ -218,7 +226,7 @@ class FPdfHelpers {
 			$this->Error('Incorrect layout display mode: '.$layout);
 	}
 
-	function SetCompression($compress)
+	public function SetCompression($compress)
 	{
 		// Set page compression
 		if(function_exists('gzcompress'))
@@ -227,49 +235,49 @@ class FPdfHelpers {
 			$this->compress = false;
 	}
 
-	function SetTitle($title, $isUTF8=false)
+	public function SetTitle($title, $isUTF8=false)
 	{
 		// Title of document
 		$this->metadata['Title'] = $isUTF8 ? $title : utf8_encode($title);
 	}
 
-	function SetAuthor($author, $isUTF8=false)
+	public function SetAuthor($author, $isUTF8=false)
 	{
 		// Author of document
 		$this->metadata['Author'] = $isUTF8 ? $author : utf8_encode($author);
 	}
 
-	function SetSubject($subject, $isUTF8=false)
+	public function SetSubject($subject, $isUTF8=false)
 	{
 		// Subject of document
 		$this->metadata['Subject'] = $isUTF8 ? $subject : utf8_encode($subject);
 	}
 
-	function SetKeywords($keywords, $isUTF8=false)
+	public function SetKeywords($keywords, $isUTF8=false)
 	{
 		// Keywords of document
 		$this->metadata['Keywords'] = $isUTF8 ? $keywords : utf8_encode($keywords);
 	}
 
-	function SetCreator($creator, $isUTF8=false)
+	public function SetCreator($creator, $isUTF8=false)
 	{
 		// Creator of document
 		$this->metadata['Creator'] = $isUTF8 ? $creator : utf8_encode($creator);
 	}
 
-	function AliasNbPages($alias='{nb}')
+	public function AliasNbPages($alias='{nb}')
 	{
 		// Define an alias for total number of pages
 		$this->AliasNbPages = $alias;
 	}
 
-	function Error($msg)
+	public function Error($msg)
 	{
 		// Fatal error
 		throw new Exception('FPDF error: '.$msg);
 	}
 
-	function Close()
+	public function Close()
 	{
 		// Terminate document
 		if($this->state==3)
@@ -286,7 +294,7 @@ class FPdfHelpers {
 		$this->_enddoc();
 	}
 
-	function AddPage($orientation='', $size='', $rotation=0)
+	public function AddPage($orientation='', $size='', $rotation=0)
 	{
 		// Start a new page
 		if($this->state==3)
@@ -355,23 +363,23 @@ class FPdfHelpers {
 		$this->ColorFlag = $cf;
 	}
 
-	function Header()
+	public function Header()
 	{
 		// To be implemented in your own inherited class
 	}
 
-	function Footer()
+	public function Footer()
 	{
 		// To be implemented in your own inherited class
 	}
 
-	function PageNo()
+	public function PageNo()
 	{
 		// Get current page number
 		return $this->page;
 	}
 
-	function SetDrawColor($r, $g=null, $b=null)
+	public function SetDrawColor($r, $g=null, $b=null)
 	{
 		// Set color for all stroking operations
 		if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -382,7 +390,7 @@ class FPdfHelpers {
 			$this->_out($this->DrawColor);
 	}
 
-	function SetFillColor($r, $g=null, $b=null)
+	public function SetFillColor($r, $g=null, $b=null)
 	{
 		// Set color for all filling operations
 		if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -394,7 +402,7 @@ class FPdfHelpers {
 			$this->_out($this->FillColor);
 	}
 
-	function SetTextColor($r, $g=null, $b=null)
+	public function SetTextColor($r, $g=null, $b=null)
 	{
 		// Set color for text
 		if(($r==0 && $g==0 && $b==0) || $g===null)
@@ -404,7 +412,7 @@ class FPdfHelpers {
 		$this->ColorFlag = ($this->FillColor!=$this->TextColor);
 	}
 
-	function GetStringWidth($s)
+	public function GetStringWidth($s)
 	{
 		// Get width of a string in the current font
 		$s = (string)$s;
@@ -416,7 +424,7 @@ class FPdfHelpers {
 		return $w*$this->FontSize/1000;
 	}
 
-	function SetLineWidth($width)
+	public function SetLineWidth($width)
 	{
 		// Set line width
 		$this->LineWidth = $width;
@@ -424,13 +432,13 @@ class FPdfHelpers {
 			$this->_out(sprintf('%.2F w',$width*$this->k));
 	}
 
-	function Line($x1, $y1, $x2, $y2)
+	public function Line($x1, $y1, $x2, $y2)
 	{
 		// Draw a line
 		$this->_out(sprintf('%.2F %.2F m %.2F %.2F l S',$x1*$this->k,($this->h-$y1)*$this->k,$x2*$this->k,($this->h-$y2)*$this->k));
 	}
 
-	function Rect($x, $y, $w, $h, $style='')
+	public function Rect($x, $y, $w, $h, $style='')
 	{
 		// Draw a rectangle
 		if($style=='F')
@@ -442,7 +450,7 @@ class FPdfHelpers {
 		$this->_out(sprintf('%.2F %.2F %.2F %.2F re %s',$x*$this->k,($this->h-$y)*$this->k,$w*$this->k,-$h*$this->k,$op));
 	}
 
-	function AddFont($family, $style='', $file='')
+	public function AddFont($family, $style='', $file='')
 	{
 		// Add a TrueType, OpenType or Type1 font
 		$family = strtolower($family);
@@ -467,7 +475,7 @@ class FPdfHelpers {
 		$this->fonts[$fontkey] = $info;
 	}
 
-	function SetFont($family, $style='', $size=0)
+	public function SetFont($family, $style='', $size=0)
 	{
 		// Select a font; size given in points
 		if($family=='')
@@ -517,7 +525,7 @@ class FPdfHelpers {
 			$this->_out(sprintf('BT /F%d %.2F Tf ET',$this->CurrentFont['i'],$this->FontSizePt));
 	}
 
-	function SetFontSize($size)
+	public function SetFontSize($size)
 	{
 		// Set font size in points
 		if($this->FontSizePt==$size)
@@ -528,7 +536,7 @@ class FPdfHelpers {
 			$this->_out(sprintf('BT /F%d %.2F Tf ET',$this->CurrentFont['i'],$this->FontSizePt));
 	}
 
-	function AddLink()
+	public function AddLink()
 	{
 		// Create a new internal link
 		$n = count($this->links)+1;
@@ -536,7 +544,7 @@ class FPdfHelpers {
 		return $n;
 	}
 
-	function SetLink($link, $y=0, $page=-1)
+	public function SetLink($link, $y=0, $page=-1)
 	{
 		// Set destination of internal link
 		if($y==-1)
@@ -546,13 +554,13 @@ class FPdfHelpers {
 		$this->links[$link] = array($page, $y);
 	}
 
-	function Link($x, $y, $w, $h, $link)
+	public function Link($x, $y, $w, $h, $link)
 	{
 		// Put a link on the page
 		$this->PageLinks[$this->page][] = array($x*$this->k, $this->hPt-$y*$this->k, $w*$this->k, $h*$this->k, $link);
 	}
 
-	function Text($x, $y, $txt)
+	public function Text($x, $y, $txt)
 	{
 		// Output a string
 		if(!isset($this->CurrentFont))
@@ -565,13 +573,13 @@ class FPdfHelpers {
 		$this->_out($s);
 	}
 
-	function AcceptPageBreak()
+	public function AcceptPageBreak()
 	{
 		// Accept automatic page break or not
 		return $this->AutoPageBreak;
 	}
 
-	function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
+	public function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
 	{
 		// Output a cell
 		$k = $this->k;
@@ -651,7 +659,7 @@ class FPdfHelpers {
 			$this->x += $w;
 	}
 
-	function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
+	public function MultiCell($w, $h, $txt, $border=0, $align='J', $fill=false)
 	{
 		// Output text with automatic or explicit line breaks
 		if(!isset($this->CurrentFont))
@@ -766,7 +774,7 @@ class FPdfHelpers {
 		$this->x = $this->lMargin;
 	}
 
-	function Write($h, $txt, $link='')
+	public function Write($h, $txt, $link='')
 	{
 		// Output text in flowing mode
 		if(!isset($this->CurrentFont))
@@ -849,7 +857,7 @@ class FPdfHelpers {
 			$this->Cell($l/1000*$this->FontSize,$h,substr($s,$j),0,0,'',false,$link);
 	}
 
-	function Ln($h=null)
+	public function Ln($h=null)
 	{
 		// Line feed; default value is the last cell height
 		$this->x = $this->lMargin;
@@ -859,7 +867,7 @@ class FPdfHelpers {
 			$this->y += $h;
 	}
 
-	function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
+	public function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 	{
 		// Put an image on the page
 		if($file=='')
@@ -924,25 +932,25 @@ class FPdfHelpers {
 			$this->Link($x,$y,$w,$h,$link);
 	}
 
-	function GetPageWidth()
+	public function GetPageWidth()
 	{
 		// Get current page width
 		return $this->w;
 	}
 
-	function GetPageHeight()
+	public function GetPageHeight()
 	{
 		// Get current page height
 		return $this->h;
 	}
 
-	function GetX()
+	public function GetX()
 	{
 		// Get x position
 		return $this->x;
 	}
 
-	function SetX($x)
+	public function SetX($x)
 	{
 		// Set x position
 		if($x>=0)
@@ -951,13 +959,13 @@ class FPdfHelpers {
 			$this->x = $this->w+$x;
 	}
 
-	function GetY()
+	public function GetY()
 	{
 		// Get y position
 		return $this->y;
 	}
 
-	function SetY($y, $resetX=true)
+	public function SetY($y, $resetX=true)
 	{
 		// Set y position and optionally reset x
 		if($y>=0)
@@ -968,14 +976,14 @@ class FPdfHelpers {
 			$this->x = $this->lMargin;
 	}
 
-	function SetXY($x, $y)
+	public function SetXY($x, $y)
 	{
 		// Set x and y positions
 		$this->SetX($x);
 		$this->SetY($y,false);
 	}
 
-	function Output($dest='', $name='', $isUTF8=false)
+	public function Output($dest='', $name='', $isUTF8=false)
 	{
 		// Output PDF to some destination
 		$this->Close();
