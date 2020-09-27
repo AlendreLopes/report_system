@@ -11,7 +11,7 @@ body {
 */
 /*xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
 #header {
-    padding-top: 100px;
+    padding-top: 115px;
     width: 720px;
     max-width: 720px;
     border: none;
@@ -23,12 +23,13 @@ body {
 
 #body {
     margin-top: 10px;
+    margin-left: 20px;
     width: 720px;
     max-width: 720px;
-    page-break-after: always;
 }
 
 .table-body-th-title{
+    padding-left: -20px;
     font-weight:bold;
     text-align: center;
     text-transform: uppercase;
@@ -61,14 +62,15 @@ body {
     visibility: hidden;
 }
 
+.next-page-break-after {
+    page-break-after: always;
+}
 .textoM {
     font-size: 10px;
     font-style: italic;
 }
 
-/* .ppagina {
-    page-break-after: always;
-}
+/*
 .corpo {
     min-width: 900px;
     max-width: 900px;

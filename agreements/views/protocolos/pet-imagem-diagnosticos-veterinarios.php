@@ -1,8 +1,9 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 /* @var $this yii\web\View */
-/* @var $model backend\models\Protocolos */
+/* @var $model app\modules\secretaria\models\Protocolos */
 \yii\web\YiiAsset::register($this);
 //
 use agreements\models\Protocolos;
@@ -24,8 +25,77 @@ $protocolo = Protocolos::find()
     'laudosDiUsObstetrica',
     'laudosDiUsPosParto',
 ])->one();
+$existPageToPrint = 0;
+$pageBreakAfter   = 0;
+// Noobisse, mas para evitar a próxima página, neste caso vazia, até ser
+//feita a class de impressão
+$apCitopatologia = $protocolo['laudosApCitopatologia'];
+if ($apCitopatologia) {
+    $pageBreakAfter   = 1;
+    $existPageToPrint = 1;    
+}
+$apCitopatologiaVaginal = $protocolo['laudosApCitopatologiaVaginal'];
+if ($apCitopatologiaVaginal) {
+    $pageBreakAfter   = 2;
+    $existPageToPrint = 1;
+}
+$apHistopatologia = $protocolo['laudosApHistopatologia'];
+if ($apHistopatologia) {
+    $pageBreakAfter   = 3;
+    $existPageToPrint = 1;
+}
+$apNecropsia = $protocolo['laudosApNecropsia'];
+if ($apNecropsia) {
+    $pageBreakAfter   = 4;
+    $existPageToPrint = 1;
+}
+$di_endoscopia = $protocolo['laudosDiEndoscopia'];
+if ($di_endoscopia) {
+    $pageBreakAfter   = 5;
+    $existPageToPrint = 1;
+}
+$di_raio_x = $protocolo['laudosDiRaioX'];
+if ($di_raio_x) {
+    $pageBreakAfter   = 6;
+    $existPageToPrint = 1;
+}
+$di_raio_x_contrastado = $protocolo['laudosDiRaioXContrastado'];
+if ($di_raio_x_contrastado) {
+    $pageBreakAfter   = 7;
+    $existPageToPrint = 1;
+}
+$di_us_aparelho_feminino = $protocolo['laudosDiUsAparelhoFeminino'];
+if ($di_us_aparelho_feminino) {
+    $pageBreakAfter   = 8;
+    $existPageToPrint = 1;
+}
+$di_us_estrutura = $protocolo['laudosDiUsEstrutura'];
+if ($di_us_estrutura) {
+    $pageBreakAfter   = 9;
+    $existPageToPrint = 1;
+}
+$di_us_exploratoria = $protocolo['laudosDiUsExploratoria'];
+if ($di_us_exploratoria) {
+    $pageBreakAfter   = 10;
+    $existPageToPrint = 1;
+}
+$di_us_gestacional = $protocolo['laudosDiUsGestacional'];
+if ($di_us_gestacional) {
+    $pageBreakAfter   = 11;
+    $existPageToPrint = 1;
+}
+$di_us_obstetrica = $protocolo['laudosDiUsObstetrica'];
+if ($di_us_obstetrica) {
+    $pageBreakAfter   = 12;
+    $existPageToPrint = 1;
+}
+$di_us_pos_parto = $protocolo['laudosDiUsPosParto'];
+if ($di_us_pos_parto) {
+    $pageBreakAfter   = 13;
+    $existPageToPrint = 1;
+}
 // Variável para exibir se há ou não laudos para impressão
-$readyToPrint = 0;
+
 //
 $this->title = "Impressão do Protocolo: " . $model->username;
 $this->params['breadcrumbs'][] = $this->title;
@@ -33,9 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="protocolos-view">
 <?php
-$apCitopatologia = $protocolo['laudosApCitopatologia'];
 if ($apCitopatologia) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -70,7 +138,13 @@ if ($apCitopatologia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 1) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Citopatologia</th>
         </tr>
@@ -100,12 +174,6 @@ if ($apCitopatologia) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -116,14 +184,19 @@ if ($apCitopatologia) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
+
 </section>
 <?php
 }
 //
-$apCitopatologiaVaginal = $protocolo['laudosApCitopatologiaVaginal'];
 if ($apCitopatologiaVaginal) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -158,7 +231,13 @@ if ($apCitopatologiaVaginal) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 2) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Citopatologia Vaginal</th>
         </tr>
@@ -236,12 +315,6 @@ if ($apCitopatologiaVaginal) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -252,14 +325,18 @@ if ($apCitopatologiaVaginal) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$apHistopatologia = $protocolo['laudosApHistopatologia'];
 if ($apHistopatologia) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -294,7 +371,13 @@ if ($apHistopatologia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 3) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Histopatologia</th>
         </tr>
@@ -324,12 +407,6 @@ if ($apHistopatologia) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -340,14 +417,18 @@ if ($apHistopatologia) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$apNecropsia = $protocolo['laudosApNecropsia'];
 if ($apNecropsia) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -382,7 +463,13 @@ if ($apNecropsia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ( 4) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Necropsia</th>
         </tr>
@@ -412,12 +499,6 @@ if ($apNecropsia) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -428,14 +509,18 @@ if ($apNecropsia) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O presente resultado tem seu valor restrito à amostra examinada neste laboratório .&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_endoscopia = $protocolo['laudosDiEndoscopia'];
 if ($di_endoscopia) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -470,7 +555,13 @@ if ($di_endoscopia) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 5) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Endoscopia</th>
         </tr>
@@ -506,13 +597,6 @@ if ($di_endoscopia) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O Resultado do presente LAUDO não configura apresença ou ausência de doença 
-            devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -523,14 +607,19 @@ if ($di_endoscopia) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O Resultado do presente LAUDO não configura apresença ou ausência de doença 
+            devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_raio_x = $protocolo['laudosDiRaioX'];
 if ($di_raio_x) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -565,7 +654,13 @@ if ($di_raio_x) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 6) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Raio-x</th>
         </tr>
@@ -609,13 +704,6 @@ if ($di_raio_x) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-                &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-                com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -626,14 +714,19 @@ if ($di_raio_x) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+                &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+                com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_raio_x_contrastado = $protocolo['laudosDiRaioXContrastado'];
 if ($di_raio_x_contrastado) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -668,7 +761,13 @@ if ($di_raio_x_contrastado) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 7) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Raio-x Contrastado</th>
         </tr>
@@ -704,13 +803,6 @@ if ($di_raio_x_contrastado) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -721,14 +813,19 @@ if ($di_raio_x_contrastado) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_aparelho_feminino = $protocolo['laudosDiUsAparelhoFeminino'];
 if ($di_us_aparelho_feminino) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -763,7 +860,13 @@ if ($di_us_aparelho_feminino) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 8) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Aparelho Feminino</th>
         </tr>
@@ -781,12 +884,6 @@ if ($di_us_aparelho_feminino) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -797,14 +894,18 @@ if ($di_us_aparelho_feminino) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado com demais dados	clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_estrutura = $protocolo['laudosDiUsEstrutura'];
 if ($di_us_estrutura) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -839,7 +940,13 @@ if ($di_us_estrutura) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 9) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia de Estruturas</th>
         </tr>
@@ -863,13 +970,6 @@ if ($di_us_estrutura) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -880,14 +980,19 @@ if ($di_us_estrutura) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_exploratoria = $protocolo['laudosDiUsExploratoria'];
 if ($di_us_exploratoria) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -922,7 +1027,13 @@ if ($di_us_exploratoria) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 10) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Exploratória</th>
         </tr>
@@ -940,13 +1051,6 @@ if ($di_us_exploratoria) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -957,14 +1061,19 @@ if ($di_us_exploratoria) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_gestacional = $protocolo['laudosDiUsGestacional'];
 if ($di_us_gestacional) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -999,7 +1108,13 @@ if ($di_us_gestacional) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 11) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Gestacional</th>
         </tr>
@@ -1017,13 +1132,6 @@ if ($di_us_gestacional) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -1034,14 +1142,19 @@ if ($di_us_gestacional) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_obstetrica = $protocolo['laudosDiUsObstetrica'];
 if ($di_us_obstetrica) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -1076,7 +1189,13 @@ if ($di_us_obstetrica) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 12) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Obstétrica</th>
         </tr>
@@ -1094,13 +1213,6 @@ if ($di_us_obstetrica) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
-            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -1111,14 +1223,19 @@ if ($di_us_obstetrica) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser correlacionado 
+            com demais dados clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
     </table>
 </section>
 <?php
 }
 //
-$di_us_pos_parto = $protocolo['laudosDiUsPosParto'];
 if ($di_us_pos_parto) {
-    $readyToPrint = 1;
 ?>
 <section class="sheet padding-5mm">
     <table id="header" class="table table-responsive">
@@ -1153,7 +1270,13 @@ if ($di_us_pos_parto) {
             <td><?= $model->requisitante; ?></td>
         </tr>
     </table>
-    <table id="body" class="table table-responsive">
+    <?php
+    if ($pageBreakAfter > 13) {
+    ?><table id="body" class="table table-responsive next-page-break-after"><?php
+    } else {
+    ?><table id="body" class="table table-responsive"><?php
+    }
+    ?>
         <tr>
             <th class="table-body-th-title">Laudo de Ultrassonografia Pós Parto</th>
         </tr>
@@ -1171,14 +1294,6 @@ if ($di_us_pos_parto) {
         </tr> -->
         <tr><td>&nbsp;</td></tr>
         <tr>
-            <td class="table-body-td-aviso">
-            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser 
-            correlacionado com demais dados 
-            clínicos e exames complementares pertinentes ao caso.&rdquo;
-            </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
             <td class="table-body-td-signature pull-right">
                 <?php echo Html::img(Yii::getAlias('@uploads').'/imgs_print_signature/veterinaria_danielle.jpg', 
                 [
@@ -1189,11 +1304,19 @@ if ($di_us_pos_parto) {
                 ]); ?>
             </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td class="table-body-td-aviso">
+            &ldquo;O resultado do presente exame não configura apresença ou ausência de doença devendo ser 
+            correlacionado com demais dados 
+            clínicos e exames complementares pertinentes ao caso.&rdquo;
+            </td>
+        </tr>
 </table>
 </section>
 <?php
 }
-if($readyToPrint){
+if($existPageToPrint){
     $this->params['breadcrumbs'][] = [
         'label' => 'Imprimir', 
         'url' => ['/protocolos/pet-imagem-diagnosticos-veterinarios', 'id' => $model->id],

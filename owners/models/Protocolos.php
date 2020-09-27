@@ -4,10 +4,23 @@ namespace owners\models;
 
 use Yii;
 use common\models\User;
+use backend\models\LaudosApCitopatologia;
+use backend\models\LaudosApCitopatologiaVaginal;
+use backend\models\LaudosApHistopatologia;
+use backend\models\LaudosApNecropsia;
+use backend\models\LaudosDiEndoscopia;
+use backend\models\LaudosDiRaioX;
+use backend\models\LaudosDiRaioXContrastado;
+use backend\models\LaudosDiUsAparelhoFeminino;
+use backend\models\LaudosDiUsEstrutura;
+use backend\models\LaudosDiUsExploratoria;
+use backend\models\LaudosDiUsGestacional;
+use backend\models\LaudosDiUsObstetrica;
+use backend\models\LaudosDiUsPosParto;
 /**
  * This is the model class for table "protocolos".
  *
- * @property int $id
+ * @property int $id    margin-left: 20px;
  * @property int $convenio_id
  * @property string $numero Proximo Protocolo
  * @property string $username

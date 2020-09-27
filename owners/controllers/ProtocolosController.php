@@ -103,11 +103,11 @@ class ProtocolosController extends AppController
             'methods' => [
                 'SetTitle' => 'Pet Imagem',
                 'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
-                'SetHeader' => ['Pet Imagem - Diagnósticos por Imagem'],
+                'SetHeader' => ['Pet Imagem - Diagnósticos Veterinários'],
                 'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
                 'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
-                'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
-                'SetFooter' => [ "Pet Imagem Diagnósticos por Imagem " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
+                'SetKeywords' => 'Pet Imagem, Diagnósticos Veterinários, Laudos, Anatomia Patológica, Diagnóstico Veterinários, Laboratorial',
+                'SetFooter' => [ "Pet Imagem Diagnósticos Veterinários " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
                 //'defaultFontSize' => '10px',
             ],
         ]);
