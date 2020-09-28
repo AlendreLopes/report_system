@@ -25,82 +25,66 @@ $protocolo = Protocolos::find()
     'laudosDiUsObstetrica',
     'laudosDiUsPosParto',
 ])->one();
-$existPageToPrint = 0;
+// Variável para exibir se há ou não laudos para impressão
 $pageBreakAfter   = 0;
 // Noobisse, mas para evitar a próxima página, neste caso vazia, até ser
 //feita a class de impressão
 $apCitopatologia = $protocolo['laudosApCitopatologia'];
 if ($apCitopatologia) {
     $pageBreakAfter   = 1;
-    $existPageToPrint = 1;    
 }
 $apCitopatologiaVaginal = $protocolo['laudosApCitopatologiaVaginal'];
 if ($apCitopatologiaVaginal) {
     $pageBreakAfter   = 2;
-    $existPageToPrint = 1;
 }
 $apHistopatologia = $protocolo['laudosApHistopatologia'];
 if ($apHistopatologia) {
     $pageBreakAfter   = 3;
-    $existPageToPrint = 1;
 }
 $apNecropsia = $protocolo['laudosApNecropsia'];
 if ($apNecropsia) {
     $pageBreakAfter   = 4;
-    $existPageToPrint = 1;
 }
 $di_endoscopia = $protocolo['laudosDiEndoscopia'];
 if ($di_endoscopia) {
     $pageBreakAfter   = 5;
-    $existPageToPrint = 1;
 }
 $di_raio_x = $protocolo['laudosDiRaioX'];
 if ($di_raio_x) {
     $pageBreakAfter   = 6;
-    $existPageToPrint = 1;
 }
 $di_raio_x_contrastado = $protocolo['laudosDiRaioXContrastado'];
 if ($di_raio_x_contrastado) {
     $pageBreakAfter   = 7;
-    $existPageToPrint = 1;
 }
 $di_us_aparelho_feminino = $protocolo['laudosDiUsAparelhoFeminino'];
 if ($di_us_aparelho_feminino) {
     $pageBreakAfter   = 8;
-    $existPageToPrint = 1;
 }
 $di_us_estrutura = $protocolo['laudosDiUsEstrutura'];
 if ($di_us_estrutura) {
     $pageBreakAfter   = 9;
-    $existPageToPrint = 1;
 }
 $di_us_exploratoria = $protocolo['laudosDiUsExploratoria'];
 if ($di_us_exploratoria) {
     $pageBreakAfter   = 10;
-    $existPageToPrint = 1;
 }
 $di_us_gestacional = $protocolo['laudosDiUsGestacional'];
 if ($di_us_gestacional) {
     $pageBreakAfter   = 11;
-    $existPageToPrint = 1;
 }
 $di_us_obstetrica = $protocolo['laudosDiUsObstetrica'];
 if ($di_us_obstetrica) {
     $pageBreakAfter   = 12;
-    $existPageToPrint = 1;
 }
 $di_us_pos_parto = $protocolo['laudosDiUsPosParto'];
 if ($di_us_pos_parto) {
     $pageBreakAfter   = 13;
-    $existPageToPrint = 1;
 }
-// Variável para exibir se há ou não laudos para impressão
-
 //
 $this->title = "Impressão do Protocolo: " . $model->username;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
 <div class="protocolos-view">
 <?php
 if ($apCitopatologia) {
@@ -1316,7 +1300,7 @@ if ($di_us_pos_parto) {
 </section>
 <?php
 }
-if($existPageToPrint){
+if($pageBreakAfter){
     $this->params['breadcrumbs'][] = [
         'label' => 'Imprimir', 
         'url' => ['/protocolos/pet-imagem-diagnosticos-veterinarios', 'id' => $model->id],

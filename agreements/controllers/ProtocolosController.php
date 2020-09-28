@@ -76,20 +76,6 @@ class ProtocolosController extends AppController
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    //public function actionViewPrint($id)
-    public function actionViewPrint()
-    {
-        // Testando a classe
-        //$model = new PrintPdf();
-        //return $this->render('view-print',['model'=>$model]);
-        return $this->redirect('index');
-    }
-    /**
-     * Displays a single Protocolos model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     public function actionUpdate()
     {
         return $this->render('index');
@@ -122,14 +108,14 @@ class ProtocolosController extends AppController
             'cssFile' => '@app/web/css/print_reports_pdf_wimgs_print.css',
             //'cssFile' => '@app/web/css/print_reports_pdf_wimgs.css',
             // any css to be embedded if required
-            'cssInline' => 'body{font-size:10px}',
+            //'cssInline' => 'body{font-size:10px}',
             // set mPDF properties on the fly
             'options' => ['title' => 'Laudos'],
             // call mPDF methods on the fly
             'methods' => [
                 'SetTitle' => 'Pet Imagem',
                 'SetSubject' => 'Generado em PDF: ' . date("D M j Y G:i:s"),
-                'SetHeader' => ['Pet Imagem - Diagnósticos Veterinários'],
+                'SetHeader' => ['Pet Imagem - Diagnósticos Veterinários '. Yii::$app->formatter->asDate(date('Y-m-d'))],
                 'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
                 'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
                 'SetKeywords' => 'Pet Imagem, Diagnósticos Veterinários, Laudos, Anatomia Patológica, Diagnóstico Veterinários, Laboratorial',

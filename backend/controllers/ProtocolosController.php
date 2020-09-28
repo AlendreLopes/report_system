@@ -123,7 +123,7 @@ class ProtocolosController extends AppController
             // enhanced bootstrap css built by Krajee for mPDF formatting 
             'cssFile' => '@app/web/css/print_report_pdf_print.css',
             // any css to be embedded if required
-            'cssInline' => 'body{font-size:10px}',
+            //'cssInline' => 'body{font-family: Arial, Helvetica, sans-serif;font-size:12px}',
             // set mPDF properties on the fly
             'options' => ['title' => 'Laudos'],
             // call mPDF methods on the fly
@@ -134,7 +134,7 @@ class ProtocolosController extends AppController
                 'SetAuthor' => 'Danielle Tullio Murad CRMVPR-4595',
                 'SetCreator' => 'Danielle Tullio Murad Médica Veterinária Imaginologista',
                 'SetKeywords' => 'Pet Imagem, Diagnósticos por Imagem, Laudos, Anatomia Patológica, Diagnóstico por Imagens, Laboratorial',
-                'SetFooter' => [ "Pet Imagem Diagnósticos por Imagem " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
+                //'SetFooter' => [ "Pet Imagem Diagnósticos por Imagem " . Yii::$app->formatter->asDate(date('Y-m-d')) . ' - Página {PAGENO}'],
             ],
         ]);
         // return the pdf output as per the destination setting
